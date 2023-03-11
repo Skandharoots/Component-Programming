@@ -16,6 +16,7 @@ class SudokuBoardTest extends SudokuBoard {
     void testFillBoard() {
         SudokuBoard sudoku = new SudokuBoard();
         sudoku.fillBoard(0, 0);
+
         //Test for rows and columns
         for (int i = 0; i < 9; i++) {
             Set<Integer> set = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9));
@@ -41,6 +42,15 @@ class SudokuBoardTest extends SudokuBoard {
                 assertEquals(set, set2);
             }
         }
+    }
+
+    @Test
+    void testIfTwoBoardsAreNotTheSame() {
+        SudokuBoard sudoku = new SudokuBoard();
+        sudoku.fillBoard(0, 0);
+        SudokuBoard sudoku2 = new SudokuBoard();
+        sudoku2.fillBoard(0, 0);
+        assertNotSame(sudoku, sudoku2);
     }
 
 

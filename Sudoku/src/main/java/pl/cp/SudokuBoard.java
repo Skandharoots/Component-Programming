@@ -1,6 +1,5 @@
 package pl.cp;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -8,7 +7,7 @@ public class SudokuBoard {
 
     private static Integer[] arrayNum = {1, 2, 3, 4, 5, 6, 7, 8, 9};
     private int size = 9;
-    private static int[][] board;
+    private int[][] board;
 
     public SudokuBoard() {
         board = new int[size][size];
