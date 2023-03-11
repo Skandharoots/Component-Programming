@@ -2,6 +2,8 @@ package pl.cp;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,7 +15,6 @@ class SudokuBoardTest extends SudokuBoard {
     @Test
     void testFillBoard() {
         SudokuBoard sudoku = new SudokuBoard();
-        SudokuBoard sudoku2 = new SudokuBoard();
         sudoku.fillBoard(0, 0);
         //Test for rows and columns
         for (int i = 0; i < 9; i++) {
@@ -43,7 +44,31 @@ class SudokuBoardTest extends SudokuBoard {
     }
 
 
-    //@Test
-    //void testPrintSudoku() {
-    //}
+    @Test
+    void testPrintSudoku() {
+        SudokuBoard sudoku = new SudokuBoard();
+        sudoku.fillBoard(0, 0);
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        // After this all System.out.println() statements will come to outContent stream.
+
+        // So, you can normally call,
+        sudoku.printSudoku(); // I will assume items is already initialized properly.
+
+        //Now you have to validate the output. Let's say items had 1 element.
+        // With name as FirstElement and number as 1.
+        String notExpectedOutput  = "1 2 3 4 5 6 7 8 9\n" +
+                "1 2 3 4 5 6 7 8 9\n" +
+                "1 2 3 4 5 6 7 8 9\n" +
+                "1 2 3 4 5 6 7 8 9\n" +
+                "1 2 3 4 5 6 7 8 9\n" +
+                "1 2 3 4 5 6 7 8 9\n" +
+                "1 2 3 4 5 6 7 8 9\n" +
+                "1 2 3 4 5 6 7 8 9\n" +
+                "1 2 3 4 5 6 7 8 9\n"; // Notice the \n for new line.
+
+        // Do the actual assertion.
+        assertNotEquals(notExpectedOutput, outContent.toString());
+    }
 }
