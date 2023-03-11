@@ -6,9 +6,9 @@ import java.util.Collections;
 
 public class SudokuBoard {
 
-    private static int[] arrayNum = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    private static Integer[] arrayNum = {1, 2, 3, 4, 5, 6, 7, 8, 9};
     private int size = 9;
-    private int[][] board;
+    private static int[][] board;
 
     public SudokuBoard() {
         board = new int[size][size];
@@ -86,5 +86,9 @@ public class SudokuBoard {
             System.out.println();
         }
         System.out.println();
+    }
+
+    public int getNumber(int i, int j) {
+        return board[i][j];
     }
 }
