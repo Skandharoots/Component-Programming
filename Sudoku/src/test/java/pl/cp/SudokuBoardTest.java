@@ -15,7 +15,7 @@ class SudokuBoardTest extends SudokuBoard {
     @Test
     void testFillBoard() {
         SudokuBoard sudoku = new SudokuBoard();
-        sudoku.fillBoard(0, 0);
+        sudoku.solveGame();
 
         //Test for rows and columns
         for (int i = 0; i < 9; i++) {
@@ -48,9 +48,9 @@ class SudokuBoardTest extends SudokuBoard {
     @Test
     void testIfTwoBoardsAreNotTheSame() {
         SudokuBoard sudoku = new SudokuBoard();
-        sudoku.fillBoard(0, 0);
+        sudoku.solveGame();
         SudokuBoard sudoku2 = new SudokuBoard();
-        sudoku2.fillBoard(0, 0);
+        sudoku2.solveGame();
         assertNotSame(sudoku, sudoku2);
     }
 
@@ -58,7 +58,7 @@ class SudokuBoardTest extends SudokuBoard {
     @Test
     void testPrintSudoku() {
         SudokuBoard sudoku = new SudokuBoard();
-        sudoku.fillBoard(0, 0);
+        sudoku.solveGame();
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         sudoku.printSudoku();
