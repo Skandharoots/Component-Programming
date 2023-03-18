@@ -70,8 +70,8 @@ public class BacktrackingSudokuSolver implements SudokuSolver {
     }
 
     private boolean checkIfCanPlace(int i, int j, int num, SudokuBoard board) {
-        return (canPlaceInRow(i, num, board)
+        return canPlaceInRow(i, num, board)
                 && canPlaceInColumn(j, num, board)
-                && canPlaceInBox(i, j, num, board));
+                && canPlaceInBox(i, j, num, board);
     }
 }

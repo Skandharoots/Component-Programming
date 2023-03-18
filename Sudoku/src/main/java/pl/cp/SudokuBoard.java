@@ -1,8 +1,5 @@
 package pl.cp;
 
-import java.util.Arrays;
-import java.util.Collections;
-
 public class SudokuBoard {
 
     private int size = 9;
@@ -15,6 +12,10 @@ public class SudokuBoard {
                 board[i][j] = 0;
             }
         }
+    }
+
+    public SudokuBoard(int[][] board) {
+        this.board = board;
     }
 
     public void printSudoku() {

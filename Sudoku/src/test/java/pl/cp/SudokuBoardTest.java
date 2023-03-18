@@ -65,4 +65,23 @@ class SudokuBoardTest extends SudokuBoard {
         String notExpectedOutput  = null;
         assertNotEquals(notExpectedOutput, outContent.toString());
     }
+
+    @Test
+    void testSetterAndGetter() {
+        int[][] grid
+                = {{1, 2, 3, 4, 5, 6, 7, 8, 9},
+                {2, 3, 4, 5, 6, 7, 8, 9, 1},
+                {3, 4, 5, 6, 7, 8, 9, 1, 2},
+                {4, 5, 6, 7, 8, 9, 1, 2, 3},
+                {5, 6, 7, 8, 9, 1, 2, 3, 4},
+                {6, 7, 8, 9, 1, 2, 3, 4, 5},
+                {7, 8, 9, 1, 2, 3, 4, 5, 6},
+                {8, 9, 1, 2, 3, 4, 5, 6, 7},
+                {9, 1, 2, 3, 4, 5, 6, 7, 8}};
+
+        SudokuBoard sudoku = new SudokuBoard(grid);
+        assertEquals(1, sudoku.getNumber(0, 0));
+        sudoku.setNumber(0, 0, 7);
+        assertEquals(7, sudoku.getNumber(0, 0));
+    }
 }
