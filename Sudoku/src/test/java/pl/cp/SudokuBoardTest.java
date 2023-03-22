@@ -78,4 +78,10 @@ class SudokuBoardTest {
         sudoku.solveGame();
         assertTrue(sudoku.checkBoard());
     }
+
+    @Test
+    void testSudokuUtils() {
+        SudokuUtils util = new SudokuUtils();
+        assertEquals(9, util.size);
+    }
 }
