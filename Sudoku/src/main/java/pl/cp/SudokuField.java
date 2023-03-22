@@ -2,9 +2,17 @@ package pl.cp;
 
 public class SudokuField {
 
-    private Integer value;
+    private int value;
 
-    Integer getValue() {
-        
+    public SudokuField() {
+
+    }
+
+    public int getFieldValue() {
+        return value;
+    }
+
+    public void setFieldValue(Integer value) {
+        this.value = value;
     }
 }
