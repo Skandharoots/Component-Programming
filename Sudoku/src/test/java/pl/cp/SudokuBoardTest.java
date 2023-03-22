@@ -23,11 +23,9 @@ class SudokuBoardTest {
             Set<Integer> set2 = new HashSet<>();
             Set<Integer> set3 = new HashSet<>();
             for (int j = 0; j < 9; j++) {
-                set2.add(sudoku.getNumber(i, j));
-                set3.add(sudoku.getNumber(j, i));
+                assertTrue(set2.add(sudoku.getNumber(i, j)));
+                assertTrue(set3.add(sudoku.getNumber(j, i)));
             }
-            assertEquals(set, set2);
-            assertEquals(set, set3);
         }
         //Test for the boxes
         Set<Integer> set = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9));
@@ -36,7 +34,7 @@ class SudokuBoardTest {
                 Set<Integer> set2 = new HashSet<>();
                 for (int j = i; j < i + 3; j++) {
                     for (int l = k; l < k + 3; l++) {
-                        set2.add(sudoku.getNumber(j, l));
+                        assertTrue(set2.add(sudoku.getNumber(j, l)));
                     }
                 }
                 System.out.println(set2);

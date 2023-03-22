@@ -36,7 +36,6 @@ public class SudokuBoard {
     }
 
     public void solveGame() {
-        SudokuSolver instance = new BacktrackingSudokuSolver();
         instance.solve(this);
     }
 }
