@@ -18,7 +18,7 @@ public class SudokuBoard {
         this.instance = instance;
     }
 
-    public int getNumber(int i, int j) {
+    public Integer getNumber(int i, int j) {
         return board[i][j].getFieldValue();
     }
 
@@ -28,5 +28,14 @@ public class SudokuBoard {
 
     public void solveGame() {
         instance.solve(this);
+    }
+
+    public SudokuRow getRow(int i) {
+        Integer[] rows = new Integer[size];
+        for (int j = 0; j < size; j++) {
+            rows[j] = getNumber(i, j);
+        }
+        SudokuRow row = new SudokuRow(rows);
+        return row;
     }
 }

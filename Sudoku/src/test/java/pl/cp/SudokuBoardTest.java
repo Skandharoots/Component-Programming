@@ -59,24 +59,12 @@ class SudokuBoardTest {
         sudoku.solveGame();
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        sudoku.printSudoku();
         String notExpectedOutput  = null;
         assertNotEquals(notExpectedOutput, outContent.toString());
     }
 
     @Test
     void testSetterAndGetter() {
-        int[][] grid
-                = {{1, 2, 3, 4, 5, 6, 7, 8, 9},
-                {2, 3, 4, 5, 6, 7, 8, 9, 1},
-                {3, 4, 5, 6, 7, 8, 9, 1, 2},
-                {4, 5, 6, 7, 8, 9, 1, 2, 3},
-                {5, 6, 7, 8, 9, 1, 2, 3, 4},
-                {6, 7, 8, 9, 1, 2, 3, 4, 5},
-                {7, 8, 9, 1, 2, 3, 4, 5, 6},
-                {8, 9, 1, 2, 3, 4, 5, 6, 7},
-                {9, 1, 2, 3, 4, 5, 6, 7, 8}};
-
         SudokuBoard sudoku = new SudokuBoard(new BacktrackingSudokuSolver());
         assertEquals(0, sudoku.getNumber(0, 0));
         sudoku.setNumber(0, 0, 7);

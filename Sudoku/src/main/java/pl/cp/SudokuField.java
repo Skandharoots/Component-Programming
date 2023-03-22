@@ -2,7 +2,7 @@ package pl.cp;
 
 public class SudokuField {
 
-    private int value;
+    private Integer value;
 
     public SudokuField() {
 
