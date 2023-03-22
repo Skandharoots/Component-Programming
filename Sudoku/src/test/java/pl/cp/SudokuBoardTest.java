@@ -52,22 +52,22 @@ class SudokuBoardTest {
         assertNotSame(sudoku, sudoku2);
     }
 
-
-    @Test
-    void testPrintSudoku() {
-        SudokuBoard sudoku = new SudokuBoard(new BacktrackingSudokuSolver());
-        sudoku.solveGame();
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
-        String notExpectedOutput  = null;
-        assertNotEquals(notExpectedOutput, outContent.toString());
-    }
-
     @Test
     void testSetterAndGetter() {
         SudokuBoard sudoku = new SudokuBoard(new BacktrackingSudokuSolver());
         assertEquals(0, sudoku.getNumber(0, 0));
         sudoku.setNumber(0, 0, 7);
         assertEquals(7, sudoku.getNumber(0, 0));
+    }
+
+    @Test
+    void testGetRowColAndBox() {
+        SudokuBoard sudoku = new SudokuBoard(new BacktrackingSudokuSolver());
+        sudoku.solveGame();
+        Integer[] arrayNum = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        Integer[] check;
+        assertNotNull(sudoku.getRow(2));
+        assertNotNull(sudoku.getColumn(2));
+        assertNotNull(sudoku.getBox(7, 3));
     }
 }

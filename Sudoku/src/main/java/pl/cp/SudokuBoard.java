@@ -38,4 +38,26 @@ public class SudokuBoard {
         SudokuRow row = new SudokuRow(rows);
         return row;
     }
+
+    public SudokuColumn getColumn(int j) {
+        Integer[] column = new Integer[size];
+        for (int i = 0; i < size; i++) {
+            column[i] = getNumber(i, j);
+        }
+        SudokuColumn col = new SudokuColumn(column);
+        return col;
+    }
+
+    public SudokuBox getBox(int row, int col) {
+        Integer[] box = new Integer[size];
+        int ar = 0;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                box[ar] = getNumber(i + (row - row % 3), j + (col - col % 3));
+                ar++;
+            }
+        }
+        SudokuBox box1 = new SudokuBox(box);
+        return box1;
+    }
 }
