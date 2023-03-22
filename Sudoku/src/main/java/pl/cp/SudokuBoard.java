@@ -30,25 +30,49 @@ public class SudokuBoard {
         instance.solve(this);
     }
 
-    public SudokuRow getRow(int i) {
+    public boolean checkBoard() {
+        boolean ok = true;
+        for (int i = 0; i < SudokuUtils.size; i++) {
+            if (!getRow(i).verify()) {
+                ok = false;
+            }
+
+        }
+        for (int j = 0; j < SudokuUtils.size; j++) {
+            if (!getColumn(j).verify()) {
+                ok = false;
+            }
+
+        }
+        for (int i = 0; i < SudokuUtils.size; i += 3) {
+            for (int j = 0; j < SudokuUtils.size; j += 3) {
+                if (!getBox(i, j).verify()) {
+                    ok = false;
+                }
+            }
+        }
+        return ok;
+    }
+
+    public SudokuVerify getRow(int i) {
         Integer[] rows = new Integer[size];
         for (int j = 0; j < size; j++) {
             rows[j] = getNumber(i, j);
         }
-        SudokuRow row = new SudokuRow(rows);
+        SudokuVerify row = new SudokuRow(rows);
         return row;
     }
 
-    public SudokuColumn getColumn(int j) {
+    public SudokuVerify getColumn(int j) {
         Integer[] column = new Integer[size];
         for (int i = 0; i < size; i++) {
             column[i] = getNumber(i, j);
         }
-        SudokuColumn col = new SudokuColumn(column);
+        SudokuVerify col = new SudokuColumn(column);
         return col;
     }
 
-    public SudokuBox getBox(int row, int col) {
+    public SudokuVerify getBox(int row, int col) {
         Integer[] box = new Integer[size];
         int ar = 0;
         for (int i = 0; i < 3; i++) {
@@ -57,7 +81,7 @@ public class SudokuBoard {
                 ar++;
             }
         }
-        SudokuBox box1 = new SudokuBox(box);
+        SudokuVerify box1 = new SudokuBox(box);
         return box1;
     }
 }

@@ -70,4 +70,12 @@ class SudokuBoardTest {
         assertNotNull(sudoku.getColumn(2));
         assertNotNull(sudoku.getBox(7, 3));
     }
+
+    @Test
+    void testCheckBoard() {
+        SudokuBoard sudoku = new SudokuBoard(new BacktrackingSudokuSolver());
+        assertFalse(sudoku.checkBoard());
+        sudoku.solveGame();
+        assertTrue(sudoku.checkBoard());
+    }
 }
