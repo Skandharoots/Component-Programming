@@ -5,17 +5,16 @@ public class SudokuBoard {
     private int size = 9;
     private int[][] board;
 
-    public SudokuBoard() {
+    private SudokuSolver instance;
+
+    public SudokuBoard(SudokuSolver instance) {
         board = new int[size][size];
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 board[i][j] = 0;
             }
         }
-    }
-
-    public SudokuBoard(int[][] board) {
-        this.board = board;
+        this.instance = instance;
     }
 
     public void printSudoku() {

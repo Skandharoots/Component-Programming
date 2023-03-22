@@ -1,7 +1,9 @@
 package pl.cp;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 public class BacktrackingSudokuSolver implements SudokuSolver {
 
@@ -17,7 +19,8 @@ public class BacktrackingSudokuSolver implements SudokuSolver {
     }
 
     private boolean solve(int i, int j, SudokuBoard board) {
-        Collections.shuffle(Arrays.asList(arrayNum));
+        List<Integer> numbers = new ArrayList<>(Arrays.asList(arrayNum));
+        Collections.shuffle(numbers);
         if (i == SudokuUtils.size - 1 && j == SudokuUtils.size) {
             return true;
         }

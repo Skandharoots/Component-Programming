@@ -4,13 +4,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SudokuSolverTest extends SudokuBoard {
+class SudokuSolverTest {
 
     @Test
     void testSolve() {
-        SudokuBoard sudoku = new SudokuBoard();
-        SudokuSolver sudokuSolve = new BacktrackingSudokuSolver();
-        sudokuSolve.solve(sudoku);
+        SudokuBoard sudoku = new SudokuBoard(new BacktrackingSudokuSolver());
+        sudoku.solveGame();
         for (int i = 0; i < SudokuUtils.size; i++) {
             for (int j = 0; j < SudokuUtils.size; j++) {
                 assertNotEquals(0, sudoku.getNumber(i, j));

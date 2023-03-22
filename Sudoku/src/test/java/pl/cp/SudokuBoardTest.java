@@ -10,11 +10,11 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SudokuBoardTest extends SudokuBoard {
+class SudokuBoardTest {
 
     @Test
     void testFillBoard() {
-        SudokuBoard sudoku = new SudokuBoard();
+        SudokuBoard sudoku = new SudokuBoard(new BacktrackingSudokuSolver());
         sudoku.solveGame();
 
         //Test for rows and columns
@@ -47,9 +47,9 @@ class SudokuBoardTest extends SudokuBoard {
 
     @Test
     void testIfTwoBoardsAreNotTheSame() {
-        SudokuBoard sudoku = new SudokuBoard();
+        SudokuBoard sudoku = new SudokuBoard(new BacktrackingSudokuSolver());
         sudoku.solveGame();
-        SudokuBoard sudoku2 = new SudokuBoard();
+        SudokuBoard sudoku2 = new SudokuBoard(new BacktrackingSudokuSolver());
         sudoku2.solveGame();
         assertNotSame(sudoku, sudoku2);
     }
@@ -57,7 +57,7 @@ class SudokuBoardTest extends SudokuBoard {
 
     @Test
     void testPrintSudoku() {
-        SudokuBoard sudoku = new SudokuBoard();
+        SudokuBoard sudoku = new SudokuBoard(new BacktrackingSudokuSolver());
         sudoku.solveGame();
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
@@ -79,8 +79,8 @@ class SudokuBoardTest extends SudokuBoard {
                 {8, 9, 1, 2, 3, 4, 5, 6, 7},
                 {9, 1, 2, 3, 4, 5, 6, 7, 8}};
 
-        SudokuBoard sudoku = new SudokuBoard(grid);
-        assertEquals(1, sudoku.getNumber(0, 0));
+        SudokuBoard sudoku = new SudokuBoard(new BacktrackingSudokuSolver());
+        assertEquals(0, sudoku.getNumber(0, 0));
         sudoku.setNumber(0, 0, 7);
         assertEquals(7, sudoku.getNumber(0, 0));
     }
