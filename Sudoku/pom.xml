@@ -10,7 +10,17 @@
     <name>00_${project.artifactId}-${project.version}</name>
 
     <url>http://maven.apache.org</url>
-
+    <licenses>
+        <license>
+            <name>The MIT License</name>
+            <url>https://gist.githubusercontent.com/RubingHan/7154917/raw/ecef95e134f9161a8fe5034456133dc71613c34b/MIT-LICENSE.txt</url>
+        </license>
+    </licenses>
+    <organization>
+        <name>IFE - IT</name>
+        <url>http://edu.p.lodz.pl/</url>
+    </organization>
+    <inceptionYear>2023</inceptionYear>
     <reporting>
         <plugins>
             <plugin>
@@ -144,6 +154,35 @@
                 <artifactId>maven-site-plugin</artifactId>
                 <version>3.10.0</version>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>1.6</version>
+
+                <configuration>
+                    <verbose>false</verbose>
+                    <includes>
+                        <includes>**/*.java</includes>
+                    </includes>
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <id>generate-license-headers</id>
+                        <goals>
+                            <goal>update-file-header</goal>
+                        </goals>
+                        <phase>process-sources</phase>
+                        <configuration>
+                            <licenseName>mit</licenseName>
+                            <roots>
+                                <root>src/main/java</root>
+                                <root>src/test/java</root>
+                            </roots>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
@@ -159,6 +198,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>17</maven.compiler.release>
+        <license.dir>${basedir}</license.dir>
     </properties>
 
     <developers>

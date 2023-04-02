@@ -1,29 +1,59 @@
 package pl.cp;
 
+/*
+ * #%L
+ * 00_FirstJava-2.0
+ * %%
+ * Copyright (C) 2023 IFE - IT
+ * %%
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ * #L%
+ */
+
+
+import java.util.Arrays;
+import java.util.List;
+
 public class SudokuBoard {
 
     private int size = 9;
-    private SudokuField[][] board;
+    private List<SudokuField[]> board;
 
     private SudokuSolver instance;
 
     public SudokuBoard(SudokuSolver instance) {
-        board = new SudokuField[size][size];
+        board = Arrays.asList(new SudokuField[size][size]);
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                board[i][j] = new SudokuField();
-                board[i][j].setFieldValue(0);
+                board.get(i)[j] = new SudokuField();
+                board.get(i)[j].setFieldValue(0);
             }
         }
         this.instance = instance;
     }
 
     public Integer getNumber(int i, int j) {
-        return board[i][j].getFieldValue();
+        return board.get(i)[j].getFieldValue();
     }
 
     public void setNumber(int i, int j, int num) {
-        board[i][j].setFieldValue(num);
+        board.get(i)[j].setFieldValue(num);
     }
 
     public void solveGame() {
@@ -55,7 +85,7 @@ public class SudokuBoard {
     }
 
     public SudokuVerify getRow(int i) {
-        Integer[] rows = new Integer[size];
+        int[] rows = new int[size];
         for (int j = 0; j < size; j++) {
             rows[j] = getNumber(i, j);
         }
@@ -64,7 +94,7 @@ public class SudokuBoard {
     }
 
     public SudokuVerify getColumn(int j) {
-        Integer[] column = new Integer[size];
+        int[] column = new int[size];
         for (int i = 0; i < size; i++) {
             column[i] = getNumber(i, j);
         }
@@ -73,7 +103,7 @@ public class SudokuBoard {
     }
 
     public SudokuVerify getBox(int row, int col) {
-        Integer[] box = new Integer[size];
+        int[] box = new int[size];
         int ar = 0;
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
