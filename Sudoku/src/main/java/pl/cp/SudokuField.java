@@ -1,5 +1,10 @@
 package pl.cp;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 public class SudokuField {
 
     private int value;
@@ -14,5 +19,31 @@ public class SudokuField {
 
     public void setFieldValue(Integer value) {
         this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        ToStringBuilder builder = new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE);
+        builder.append(value);
+        return builder.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof SudokuField)) {
+            return false;
+        }
+        SudokuField c = (SudokuField) o;
+        EqualsBuilder builder = new EqualsBuilder();
+        return builder.append(value, c.value).isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        HashCodeBuilder builder = new HashCodeBuilder();
+        return builder.append(value).toHashCode();
     }
 }

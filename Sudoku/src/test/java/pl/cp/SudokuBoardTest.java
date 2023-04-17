@@ -28,13 +28,7 @@ package pl.cp;
 
 
 import org.junit.jupiter.api.Test;
-
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-
+import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SudokuBoardTest {
@@ -75,7 +69,7 @@ class SudokuBoardTest {
         sudoku.solveGame();
         SudokuBoard sudoku2 = new SudokuBoard(new BacktrackingSudokuSolver());
         sudoku2.solveGame();
-        assertNotSame(sudoku, sudoku2);
+        assertFalse(sudoku.equals(sudoku2));
     }
 
     @Test
@@ -109,5 +103,44 @@ class SudokuBoardTest {
     void testSudokuUtils() {
         SudokuUtils util = new SudokuUtils();
         assertEquals(9, util.size);
+    }
+    @Test
+    void testEqualsSudokuBoard() {
+        SudokuBoard Sudoku = new SudokuBoard(new BacktrackingSudokuSolver());
+        SudokuBoard Sudoku2 = new SudokuBoard(new BacktrackingSudokuSolver());
+        SudokuBoard Sudoku3 = new SudokuBoard(new BacktrackingSudokuSolver());
+        SudokuField field = new SudokuField();
+        Sudoku.solveGame();
+        Sudoku2.solveGame();
+        Sudoku3.solveGame();
+        assertFalse(Sudoku.equals(Sudoku2));
+        assertTrue(Sudoku.equals(Sudoku));
+        assertFalse(Sudoku.equals(field));
+    }
+
+    @Test
+    void testEqualsSudokuField() {
+        SudokuField field = new SudokuField();
+        SudokuField field2 = new SudokuField();
+        SudokuField field3 = new SudokuField();
+        SudokuBoard Sudoku = new SudokuBoard(new BacktrackingSudokuSolver());
+        field.setFieldValue(1);
+        field2.setFieldValue(1);
+        field3.setFieldValue(2);
+        assertFalse(field.equals(Sudoku));
+        assertFalse(field.equals(field3));
+        assertTrue(field.equals(field));
+    }
+
+    @Test
+    void testToHash() {
+        SudokuBoard Sudoku = new SudokuBoard(new BacktrackingSudokuSolver());
+        SudokuBoard Sudoku2 = new SudokuBoard(new BacktrackingSudokuSolver());
+        Sudoku.solveGame();
+        Sudoku2.solveGame();
+        Map<SudokuBoard, Integer> map = new HashMap<SudokuBoard, Integer>();
+        map.put(Sudoku, 3);
+        map.put(Sudoku2, 2);
+        assertFalse(Sudoku.hashCode() == Sudoku2.hashCode());
     }
 }

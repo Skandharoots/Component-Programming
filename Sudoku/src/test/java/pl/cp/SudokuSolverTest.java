@@ -39,9 +39,10 @@ class SudokuSolverTest {
         sudoku.solveGame();
         for (int i = 0; i < SudokuUtils.size; i++) {
             for (int j = 0; j < SudokuUtils.size; j++) {
-                assertNotEquals(0, sudoku.getNumber(i, j));
+                assertFalse(sudoku.getNumber(i, j).equals(0));
             }
         }
+        System.out.println(sudoku);
     }
 
 }

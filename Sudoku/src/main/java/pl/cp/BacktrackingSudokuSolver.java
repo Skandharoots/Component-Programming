@@ -44,7 +44,7 @@ public class BacktrackingSudokuSolver implements SudokuSolver {
 
     private boolean canPlaceInRow(int i, int num, SudokuBoard board) {
         for (int j = 0; j < SudokuUtils.size; j++) {
-            if (board.getNumber(i, j) == num) {
+            if (board.getNumber(i, j).equals(num)) {
                 return false;
             }
         }
@@ -53,7 +53,7 @@ public class BacktrackingSudokuSolver implements SudokuSolver {
 
     private boolean canPlaceInColumn(int j, int num, SudokuBoard board) {
         for (int i = 0; i < SudokuUtils.size; i++) {
-            if (board.getNumber(i, j) == num) {
+            if (board.getNumber(i, j).equals(num)) {
                 return false;
             }
         }
@@ -63,7 +63,7 @@ public class BacktrackingSudokuSolver implements SudokuSolver {
     private boolean canPlaceInBox(int row, int col, int num, SudokuBoard board) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                if (board.getNumber(i + (row - row % 3),j + (col - col % 3)) == num) {
+                if (board.getNumber(i + (row - row % 3),j + (col - col % 3)).equals(num)) {
                     return false;
                 }
             }

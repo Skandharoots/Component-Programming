@@ -1,8 +1,11 @@
 package pl.cp;
 
-
 import java.util.Arrays;
 import java.util.List;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class SudokuBoard {
 
@@ -87,5 +90,47 @@ public class SudokuBoard {
         }
         SudokuVerify box1 = new SudokuBox(box);
         return box1;
+    }
+
+    @Override
+    public String toString() {
+        ToStringBuilder builder = new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE);
+        builder.append('\n');
+        for (int i = 0; i < SudokuUtils.size; i++) {
+            for (int j = 0; j < SudokuUtils.size; j++) {
+                builder.append(board.get(i)[j]);
+            }
+            builder.append('\n');
+        }
+        return builder.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof SudokuBoard)) {
+            return false;
+        }
+        SudokuBoard c = (SudokuBoard) o;
+        EqualsBuilder builder = new EqualsBuilder();
+        for (int i = 0; i < SudokuUtils.size; i++) {
+            for (int j = 0; j < SudokuUtils.size; j++) {
+                builder.append(board.get(i)[j].getFieldValue(), c.board.get(i)[j].getFieldValue());
+            }
+        }
+        return builder.isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        HashCodeBuilder builder = new HashCodeBuilder();
+        for (int i = 0; i < SudokuUtils.size; i++) {
+            for (int j = 0; j < SudokuUtils.size; j++) {
+                builder.append(board.get(i)[j]);
+            }
+        }
+        return builder.toHashCode();
     }
 }
