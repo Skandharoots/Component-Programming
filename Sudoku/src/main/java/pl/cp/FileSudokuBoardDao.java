@@ -28,18 +28,20 @@ public class FileSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
             reader = new FileReader(fileName);
             BufferedReader in = new BufferedReader(reader);
             String line = in.readLine();
-            if (false == line.matches(",?,?,?,?,?,?,?,?,?,")) {
+            if (false == line.matches("")) {
                 reportFormatError();
             }
-            line = in.readLine();
-            String[] fieldValues = line.split(",");
-            int i = 0;
-            for (int j = 0; j < 9; j++) {
-                for (int k = 0; k < 9; k++) {
-                    board.setNumber(j, k, Integer.valueOf(fieldValues[i]));
-                    i++;
+            for (int ln = 0; ln < 9; ln++) {
+                line = in.readLine();
+                String[] fieldValues = line.split(",");
+                if (fieldValues.length != 9) {
+                    reportFormatError();
                 }
-            }
+                    for (int k = 0; k < 9; k++) {
+                        board.setNumber(ln, k, Integer.valueOf(fieldValues[k]));
+                    }
+                }
+            reader.close();
             return board;
         } catch (Exception ex) {
             throw new DaoExceptions("Reader failed");
@@ -58,6 +60,7 @@ public class FileSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
         try {
             writer = new FileWriter(fileName);
             writer.write(object.toString());
+            writer.close();
         } catch (Exception ex) {
             throw new DaoExceptions("Write failed");
         }

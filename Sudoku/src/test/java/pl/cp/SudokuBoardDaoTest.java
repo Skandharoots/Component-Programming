@@ -12,4 +12,12 @@ public class SudokuBoardDaoTest {
         Dao dao = factory.getFileDao("Sudoku1.txt");
         dao.write(board);
     }
+
+    @Test
+    void testReadDao() {
+        SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
+        Dao dao = factory.getFileDao("Sudoku1.txt");
+        SudokuBoard board = (SudokuBoard) dao.read();
+        System.out.println(board);
+    }
 }
