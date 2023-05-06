@@ -34,11 +34,11 @@ public class FileSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
             for (int ln = 0; ln < 9; ln++) {
                 line = in.readLine();
                 String[] fieldValues = line.split(",");
-                if (fieldValues.length != 9) {
+                if (fieldValues.length != 10) {
                     reportFormatError();
                 }
                     for (int k = 0; k < 9; k++) {
-                        board.setNumber(ln, k, Integer.valueOf(fieldValues[k]));
+                        board.setNumber(ln, k, Integer.valueOf(fieldValues[k + 1]));
                     }
                 }
             reader.close();
