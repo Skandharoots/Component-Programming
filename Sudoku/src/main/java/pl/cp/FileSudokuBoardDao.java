@@ -51,7 +51,7 @@ public class FileSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
             writer = new FileWriter(fileName);
             writer.write(object.toString());
             writer.close();
-        } catch (Exception ex) {
+        } catch (IOException ex) {
             throw new DaoExceptions("Write failed", ex);
         }
     }
