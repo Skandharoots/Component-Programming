@@ -20,22 +20,19 @@ public class FileSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
 
     @Override
     public SudokuBoard read() {
-        if (reader != null) {
-            throw new DaoExceptions("Reader already used");
-        }
         try {
             SudokuBoard board = new SudokuBoard(new BacktrackingSudokuSolver());
             reader = new FileReader(fileName);
             BufferedReader in = new BufferedReader(reader);
             String line = in.readLine();
             if (false == line.matches("")) {
-                reportFormatError();
+                throw new DaoExceptions("Format error");
             }
             for (int ln = 0; ln < 9; ln++) {
                 line = in.readLine();
                 String[] fieldValues = line.split(",");
                 if (fieldValues.length != 10) {
-                    reportFormatError();
+                    throw new DaoExceptions("Format error");
                 }
                     for (int k = 0; k < 9; k++) {
                         board.setNumber(ln, k, Integer.valueOf(fieldValues[k + 1]));
@@ -48,21 +45,14 @@ public class FileSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
         }
     }
 
-    private void reportFormatError() throws DaoExceptions {
-        throw new DaoExceptions("Incorrect data format");
-    }
-
     @Override
     public void write(SudokuBoard object) {
-        if (writer != null) {
-            throw new DaoExceptions("Writer already used");
-        }
         try {
             writer = new FileWriter(fileName);
             writer.write(object.toString());
             writer.close();
         } catch (Exception ex) {
-            throw new DaoExceptions("Write failed");
+            throw new DaoExceptions("Write failed", ex);
         }
     }
 
