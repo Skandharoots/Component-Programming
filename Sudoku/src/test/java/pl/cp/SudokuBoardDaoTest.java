@@ -2,6 +2,8 @@ package pl.cp;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.ThrowingSupplier;
+
+import java.io.FileReader;
 import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -35,9 +37,14 @@ public class SudokuBoardDaoTest {
         Dao dao3 = factory3.getFileDao("?.txt");
         DaoExceptions thrown3 = assertThrows(DaoExceptions.class, () -> dao3.write(board), "Write failed");
         assertTrue(thrown3.getMessage().contentEquals("Write failed"));
+    }
 
-
-        //assertDoesNotThrow(() -> dao2.write(board));
-        //verify(dao3).close();
+    @Test
+    public void closeTest() {
+        SudokuBoardDaoFactory factory1 = new SudokuBoardDaoFactory();
+        SudokuBoard board = new SudokuBoard(new BacktrackingSudokuSolver());
+        board.solveGame();
+        Dao dao1 = factory1.getFileDao("Wrong.txt");
+        assertDoesNotThrow(() -> dao1.close());
     }
 }
