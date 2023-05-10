@@ -48,6 +48,7 @@ public class CloneTest {
         SudokuBox box = new SudokuBox(boxes);
         try {
             SudokuBox clone = box.clone();
+            assertFalse(box.equals(clone));
         } catch (CloneNotSupportedException ex) {
             System.out.println("Clone not supported");
         }
@@ -59,6 +60,7 @@ public class CloneTest {
         SudokuRow box = new SudokuRow(boxes);
         try {
             SudokuRow clone = box.clone();
+            assertFalse(box.equals(clone));
         } catch (CloneNotSupportedException ex) {
             System.out.println("Clone not supported");
         }
@@ -70,6 +72,7 @@ public class CloneTest {
         SudokuColumn box = new SudokuColumn(boxes);
         try {
             SudokuColumn clone = box.clone();
+            assertFalse(box.equals(clone));
         } catch (CloneNotSupportedException ex) {
             System.out.println("Clone not supported");
         }
