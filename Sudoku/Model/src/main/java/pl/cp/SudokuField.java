@@ -53,11 +53,9 @@ public class SudokuField implements Comparable<SudokuField> {
         }
         if (value == arg.value) {
             return 1;
-        }
-        else if (value != arg.value) {
+        } else {
             return 0;
         }
-        else return 0;
     }
 
     @Override

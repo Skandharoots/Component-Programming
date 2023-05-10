@@ -116,4 +116,5 @@ class SudokuBoardTest {
         map.put(Sudoku2, 2);
         assertFalse(Sudoku.hashCode() == Sudoku2.hashCode());
     }
+
 }
