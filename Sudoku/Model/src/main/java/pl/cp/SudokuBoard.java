@@ -7,7 +7,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-public class SudokuBoard {
+public class SudokuBoard implements Cloneable {
 
     private int size = 9;
     private List<SudokuField[]> board;
@@ -132,5 +132,10 @@ public class SudokuBoard {
             }
         }
         return builder.toHashCode();
+    }
+
+    @Override
+    public SudokuBoard clone() throws CloneNotSupportedException {
+        return (SudokuBoard) super.clone();
     }
 }
