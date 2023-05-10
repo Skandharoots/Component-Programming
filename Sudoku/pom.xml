@@ -8,6 +8,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>Model</module>
+        <module>View</module>
     </modules>
 
     <name>00_${project.artifactId}-${project.version}</name>
