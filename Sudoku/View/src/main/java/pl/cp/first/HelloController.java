@@ -1,4 +1,4 @@
-package pl.cp.first.view;
+package pl.cp.first;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

@@ -3,6 +3,6 @@ module pl.cp.first.view {
     requires javafx.fxml;
 
 
-    opens pl.cp.first.view to javafx.fxml;
-    exports pl.cp.first.view;
+    opens pl.cp.first to javafx.fxml;
+    exports pl.cp.first;
 }
