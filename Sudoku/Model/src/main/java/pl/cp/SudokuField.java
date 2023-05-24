@@ -6,7 +6,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-public class SudokuField implements Comparable<SudokuField> {
+public class SudokuField implements Comparable<SudokuField>, Cloneable {
 
     private int value;
 
@@ -60,12 +60,6 @@ public class SudokuField implements Comparable<SudokuField> {
 
     @Override
     public SudokuField clone() throws CloneNotSupportedException {
-        SudokuField copy = null;
-        try {
-            copy = (SudokuField) super.clone();
-        } catch (CloneNotSupportedException ex) {
-            System.out.println("Clone not supported");
-        }
-        return copy;
+        return (SudokuField) super.clone();
     }
 }

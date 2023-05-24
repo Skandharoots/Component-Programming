@@ -24,7 +24,7 @@ public class CloneTest {
         field.setFieldValue(6);
         try {
             SudokuField clone = field.clone();
-            assertFalse(field.equals(clone));
+            assertTrue(field.equals(clone));
         } catch (CloneNotSupportedException ex) {
             System.out.println("Clone not supported");
         }
