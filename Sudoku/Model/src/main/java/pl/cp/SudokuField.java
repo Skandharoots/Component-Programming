@@ -1,9 +1,6 @@
 package pl.cp;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import org.apache.commons.lang3.builder.*;
 
 public class SudokuField implements Comparable<SudokuField> {
 
@@ -46,16 +43,14 @@ public class SudokuField implements Comparable<SudokuField> {
         HashCodeBuilder builder = new HashCodeBuilder();
         return builder.append(value).toHashCode();
     }
-
+    @Override
     public int compareTo(SudokuField arg) {
         if (arg == null) {
             throw new NullPointerException("Null pointer");
         }
-        if (value == arg.value) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return new CompareToBuilder()
+                .append(value, arg.value)
+                .toComparison();
     }
 
     @Override

@@ -18,6 +18,7 @@ public class SudokuBoardDaoTest {
         dao.write(board);
         SudokuBoard board2 = (SudokuBoard) dao.read();
         assertEquals(board, board2);
+        assertDoesNotThrow(dao::close);
     }
 
     @Test
@@ -37,6 +38,9 @@ public class SudokuBoardDaoTest {
         Dao dao3 = factory3.getFileDao("?.txt");
         DaoExceptions thrown3 = assertThrows(DaoExceptions.class, () -> dao3.write(board), "Write failed");
         assertTrue(thrown3.getMessage().contentEquals("Write failed"));
+        assertDoesNotThrow(dao1::close);
+        assertDoesNotThrow(dao2::close);
+        assertDoesNotThrow(dao3::close);
     }
 
     @Test
@@ -45,6 +49,6 @@ public class SudokuBoardDaoTest {
         SudokuBoard board = new SudokuBoard(new BacktrackingSudokuSolver());
         board.solveGame();
         Dao dao1 = factory1.getFileDao("Wrong.txt");
-        assertDoesNotThrow(() -> dao1.close());
+        assertDoesNotThrow(dao1::close);
     }
 }
