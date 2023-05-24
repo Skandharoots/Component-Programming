@@ -6,25 +6,24 @@ public class DifficultyLevel {
     public DifficultyLevel(Difficulty var) {
         difficulty = var;
     }
+
     protected enum Difficulty {
         Easy,
         Medium,
         Hard
     }
+
     private final DifficultyLevel.Difficulty difficulty;
+
     public void createBoard(SudokuBoard board) {
         int removables = 0;
 
         switch (difficulty) {
-            case Easy:
-                removables = 30;
-                break;
-            case Medium:
-                removables = 40;
-                break;
-            case Hard:
-                removables = 50;
-                break;
+            case Easy -> removables = 30;
+            case Medium -> removables = 40;
+            case Hard -> removables = 50;
+            default -> {
+            }
         }
 
         Random x = new Random();

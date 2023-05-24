@@ -1,5 +1,6 @@
 package pl.cp;
 
+import java.io.ByteArrayInputStream;
 import java.util.Arrays;
 import java.util.List;
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -136,6 +137,12 @@ public class SudokuBoard implements Cloneable {
 
     @Override
     public SudokuBoard clone() throws CloneNotSupportedException {
-        return (SudokuBoard) super.clone();
+        SudokuBoard board = new SudokuBoard(new BacktrackingSudokuSolver());
+        for (int i = 0; i < SudokuUtils.size; i++) {
+            for (int j = 0; j < SudokuUtils.size; j++) {
+                board.setNumber(i, j, this.getNumber(i, j));
+            }
+        }
+        return board;
     }
 }

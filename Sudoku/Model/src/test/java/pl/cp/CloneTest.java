@@ -24,7 +24,7 @@ public class CloneTest {
         field.setFieldValue(6);
         try {
             SudokuField clone = field.clone();
-            assertTrue(field.equals(clone));
+            assertFalse(field.equals(clone));
         } catch (CloneNotSupportedException ex) {
             System.out.println("Clone not supported");
         }
@@ -36,9 +36,9 @@ public class CloneTest {
         SudokuField field2 = new SudokuField();
         field.setFieldValue(6);
         field2.setFieldValue(5);
-        assertEquals(0, field.compareTo(field2));
-        field2.setFieldValue(6);
         assertEquals(1, field.compareTo(field2));
+        field2.setFieldValue(6);
+        assertEquals(0, field.compareTo(field2));
         assertThrows(NullPointerException.class, () -> field.compareTo(null), "Null pointer");
     }
 

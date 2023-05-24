@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public abstract class SudokuVerify {
 
-    private int[] numbers;
+    public int[] numbers;
 
     private int[] arrayNum = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 

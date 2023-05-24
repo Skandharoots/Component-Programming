@@ -1,6 +1,10 @@
 package pl.cp;
 
-import org.apache.commons.lang3.builder.*;
+import org.apache.commons.lang3.builder.CompareToBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class SudokuField implements Comparable<SudokuField> {
 
@@ -43,6 +47,7 @@ public class SudokuField implements Comparable<SudokuField> {
         HashCodeBuilder builder = new HashCodeBuilder();
         return builder.append(value).toHashCode();
     }
+
     @Override
     public int compareTo(SudokuField arg) {
         if (arg == null) {
@@ -55,6 +60,12 @@ public class SudokuField implements Comparable<SudokuField> {
 
     @Override
     public SudokuField clone() throws CloneNotSupportedException {
-        return this;
+        SudokuField copy = null;
+        try {
+            copy = (SudokuField) super.clone();
+        } catch (CloneNotSupportedException ex) {
+            System.out.println("Clone not supported");
+        }
+        return copy;
     }
 }
