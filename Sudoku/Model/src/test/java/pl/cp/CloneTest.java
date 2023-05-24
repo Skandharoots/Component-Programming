@@ -47,7 +47,7 @@ public class CloneTest {
         int[] boxes = { 2, 3, 5, 6, 7, 1, 4, 8, 9 };
         SudokuBox box = new SudokuBox(boxes);
         try {
-            SudokuBox clone = box.clone();
+            SudokuBox clone = (SudokuBox) box.clone();
             assertFalse(box.equals(clone));
         } catch (CloneNotSupportedException ex) {
             System.out.println("Clone not supported");
