@@ -12,7 +12,12 @@ public class CloneTest {
         board.solveGame();
         try {
             SudokuBoard clone = board.clone();
+            SudokuBoard clone2 = board.clone();
             assertTrue(board.equals(clone));
+            assertTrue(board.equals(clone2));
+            clone.setNumber(2, 4, 0);
+            assertFalse(board.equals(clone));
+            assertTrue(board.equals(clone2));
         } catch (CloneNotSupportedException ex) {
             System.out.println("Clone not supported");
         }
@@ -24,7 +29,13 @@ public class CloneTest {
         field.setFieldValue(6);
         try {
             SudokuField clone = field.clone();
+            SudokuField clone2 = field.clone();
             assertTrue(field.equals(clone));
+            assertTrue(field.equals(clone2));
+            clone.setFieldValue(3);
+            assertFalse(field.equals(clone));
+            assertTrue(field.equals(clone2));
+
         } catch (CloneNotSupportedException ex) {
             System.out.println("Clone not supported");
         }
