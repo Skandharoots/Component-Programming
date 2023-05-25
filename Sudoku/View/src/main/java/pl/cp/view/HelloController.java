@@ -20,7 +20,7 @@ import pl.cp.DifficultyLevel;
 import pl.cp.SudokuBoard;
 
 public class HelloController {
-    private SudokuBoard board;
+
 
     @FXML
     Button easy;
@@ -31,66 +31,30 @@ public class HelloController {
     @FXML
     Button hard;
 
-    @FXML
-    GridPane gridPane;
-
-    public void initialize() {
-        board = new SudokuBoard(new BacktrackingSudokuSolver());
-        board.solveGame();
-    }
-
-    public void populateGrid() {
-        gridPane = new GridPane();
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                TextField field = new TextField(Integer.toString(board.getNumber(i, j)));
-                field.setAlignment(Pos.CENTER);
-                field.setPrefHeight(30);
-                field.setPrefWidth(30);
-                gridPane.add(field, i, j);
-            }
-        }
-
-        gridPane.setHgap(5);
-        gridPane.setVgap(5);
-        gridPane.setPadding(new Insets(20, 20, 20, 20));
-        gridPane.setAlignment(Pos.CENTER);
-
-    }
+    static DifficultyLevel difficultyLevel;
 
     public void setBoardScene() throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("board-view.fxml"));
         Stage window = (Stage) easy.getScene().getWindow();
-        populateGrid();
-        window.setScene(new Scene(gridPane, 500, 700));
+        window.setScene(new Scene(root, 500, 700));
     }
+
 
     @FXML
     protected void onEasyButtonClick() throws Exception {
-
-        initialize();
-        DifficultyLevel dl = new DifficultyLevel(DifficultyLevel.Difficulty.Easy);
-        dl.createBoard(board);
+        difficultyLevel = new DifficultyLevel(DifficultyLevel.Difficulty.Easy);
         setBoardScene();
-
     }
 
     @FXML
     protected void onMediumButtonClick() throws Exception {
-
-        initialize();
-        DifficultyLevel dl = new DifficultyLevel(DifficultyLevel.Difficulty.Medium);
-        dl.createBoard(board);
+        difficultyLevel = new DifficultyLevel(DifficultyLevel.Difficulty.Medium);
         setBoardScene();
     }
 
     @FXML
     protected void onHardButtonClick() throws Exception {
-
-        initialize();
-        DifficultyLevel dl = new DifficultyLevel(DifficultyLevel.Difficulty.Hard);
-        dl.createBoard(board);
+        difficultyLevel = new DifficultyLevel(DifficultyLevel.Difficulty.Hard);
         setBoardScene();
-
     }
 }
