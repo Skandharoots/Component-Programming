@@ -1,16 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="pl.cp.view.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+<VBox alignment="CENTER" prefHeight="387.0" prefWidth="629.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="pl.cp.view.HelloController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <MenuBar minHeight="-Infinity" minWidth="-Infinity">
+     <menus>
+       <Menu mnemonicParsing="false" text="File">
+         <items>
+           <MenuItem mnemonicParsing="false" text="Close" />
+         </items>
+       </Menu>
+       <Menu mnemonicParsing="false" text="Edit">
+         <items>
+           <MenuItem mnemonicParsing="false" text="Delete" />
+         </items>
+       </Menu>
+       <Menu mnemonicParsing="false" text="Help">
+         <items>
+           <MenuItem mnemonicParsing="false" text="About" />
+         </items>
+       </Menu>
+     </menus>
+   </MenuBar>
+   <Label alignment="TOP_CENTER" prefHeight="33.0" prefWidth="185.0" text="Choose difficulty">
+      <font>
+         <Font size="25.0" />
+      </font>
+      <cursor>
+         <Cursor fx:constant="NONE" />
+      </cursor>
+   </Label>
+   <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Easy">
+      <font>
+         <Font size="20.0" />
+      </font>
+   </Button>
+   <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Medium">
+      <font>
+         <Font size="20.0" />
+      </font>
+   </Button>
+   <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Hard">
+      <font>
+         <Font size="20.0" />
+      </font>
+   </Button>
+
+    <Label fx:id="welcomeText" />
 </VBox>
