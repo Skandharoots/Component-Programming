@@ -1,8 +1,10 @@
-module pl.cp.first.view {
+module pl.cp.view {
     requires javafx.controls;
     requires javafx.fxml;
-    requires ModelProject;
+    requires javafx.graphics;
 
-    opens pl.cp.first to javafx.fxml;
-    exports pl.cp.first;
+    requires Model;
+
+    opens pl.cp.view to javafx.fxml;
+    exports pl.cp.view;
 }

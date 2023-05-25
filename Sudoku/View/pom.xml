@@ -4,15 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>pl.cp.first</groupId>
+        <groupId>pl.cp</groupId>
         <artifactId>FirstJava</artifactId>
         <version>2.0-Snapshot</version>
     </parent>
-    <artifactId>ViewProject</artifactId>
+    <artifactId>View</artifactId>
     <version>2.0-Snapshot</version>
     <packaging>jar</packaging>
 
-    <name>00_${project.artifactId}-${project.version}</name>
+    <name>View</name>
 
     <url>http://maven.apache.org</url>
     <licenses>
@@ -81,11 +81,6 @@
     </properties>
 
     <dependencies>
-        <!--<dependency>
-            <groupId>pl.cp.first</groupId>
-            <artifactId>ModelProject</artifactId>
-            <version>2.0-Snapshot</version>
-        </dependency>-->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
@@ -104,8 +99,8 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>pl.cp.first</groupId>
-            <artifactId>ModelProject</artifactId>
+            <groupId>pl.cp</groupId>
+            <artifactId>Model</artifactId>
             <version>2.0-Snapshot</version>
             <scope>compile</scope>
         </dependency>
