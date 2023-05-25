@@ -23,42 +23,43 @@ public class HelloController {
     @FXML
     Button hard;
 
-    @FXML
-    protected void onEasyButtonClick() throws Exception {
-
+    public void initialize() {
         board = new SudokuBoard(new BacktrackingSudokuSolver());
         board.solveGame();
-        DifficultyLevel dl = new DifficultyLevel(DifficultyLevel.Difficulty.Easy);
-        dl.createBoard(board);
+    }
+
+    public void setBoardScene() throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("board-view.fxml"));
         Stage window = (Stage) easy.getScene().getWindow();
         window.setScene(new Scene(root, 750, 500));
+    }
+
+    @FXML
+    protected void onEasyButtonClick() throws Exception {
+
+        initialize();
+        DifficultyLevel dl = new DifficultyLevel(DifficultyLevel.Difficulty.Easy);
+        dl.createBoard(board);
+        setBoardScene();
 
     }
 
     @FXML
     protected void onMediumButtonClick() throws Exception {
 
-        board = new SudokuBoard(new BacktrackingSudokuSolver());
-        board.solveGame();
+        initialize();
         DifficultyLevel dl = new DifficultyLevel(DifficultyLevel.Difficulty.Medium);
         dl.createBoard(board);
-        Parent root = FXMLLoader.load(getClass().getResource("board-view.fxml"));
-        Stage window = (Stage) medium.getScene().getWindow();
-        window.setScene(new Scene(root, 750, 500));
-
+        setBoardScene();
     }
 
     @FXML
     protected void onHardButtonClick() throws Exception {
 
-        board = new SudokuBoard(new BacktrackingSudokuSolver());
-        board.solveGame();
+        initialize();
         DifficultyLevel dl = new DifficultyLevel(DifficultyLevel.Difficulty.Easy);
         dl.createBoard(board);
-        Parent root = FXMLLoader.load(getClass().getResource("board-view.fxml"));
-        Stage window = (Stage) hard.getScene().getWindow();
-        window.setScene(new Scene(root, 750, 500));
+        setBoardScene();
 
     }
 }
