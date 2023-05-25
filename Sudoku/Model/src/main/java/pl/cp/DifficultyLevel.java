@@ -7,7 +7,7 @@ public class DifficultyLevel {
         difficulty = var;
     }
 
-    protected enum Difficulty {
+    public enum Difficulty {
         Easy,
         Medium,
         Hard
