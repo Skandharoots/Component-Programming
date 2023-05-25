@@ -32,10 +32,10 @@ public class BoardController {
 
                 TextField field = new TextField();
                 String fieldval = Integer.toString(board.getNumber(i, j));
-                field.setText(fieldval.equals("0")?"":fieldval);
+                field.setText(fieldval.equals("0") ? "" : fieldval);
                 field.setAlignment(Pos.CENTER);
-                field.setPrefHeight(30);
-                field.setPrefWidth(30);
+                field.setPrefHeight(40);
+                field.setPrefWidth(20);
                 myGrid.add(field, i, j);
             }
         }

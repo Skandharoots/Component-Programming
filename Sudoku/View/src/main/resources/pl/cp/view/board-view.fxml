@@ -6,11 +6,10 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.cp.view.BoardController">
+<AnchorPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.cp.view.BoardController">
    <children>
-      <GridPane fx:id="myGrid" alignment="CENTER" hgap="5.0" layoutX="100.0" layoutY="100.0" prefHeight="400.0" prefWidth="400.0" vgap="5.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
+      <GridPane fx:id="myGrid" alignment="CENTER" hgap="5.0" layoutX="50.0" layoutY="72.0" prefHeight="400.0" prefWidth="400.0" vgap="5.0" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="72.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -37,10 +36,6 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </GridPane>
-      <Button fx:id="backButton" layoutX="100.0" layoutY="36.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="94.0" text="Back">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
+      <Button fx:id="backButton" layoutX="100.0" layoutY="36.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="68.0" text="Back" />
    </children>
 </AnchorPane>
