@@ -31,7 +31,7 @@ public class HelloController {
     public void setBoardScene() throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("board-view.fxml"));
         Stage window = (Stage) easy.getScene().getWindow();
-        window.setScene(new Scene(root, 750, 500));
+        window.setScene(new Scene(root, 500, 700));
     }
 
     @FXML
