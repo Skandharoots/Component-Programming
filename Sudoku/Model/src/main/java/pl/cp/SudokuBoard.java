@@ -1,6 +1,5 @@
 package pl.cp;
 
-import java.io.ByteArrayInputStream;
 import java.util.Arrays;
 import java.util.List;
 import org.apache.commons.lang3.builder.EqualsBuilder;

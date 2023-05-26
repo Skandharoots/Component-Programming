@@ -9,11 +9,9 @@ public class DifficultyTest {
     void enumTest() {
         SudokuBoard board = new SudokuBoard(new BacktrackingSudokuSolver());
         board.solveGame();
-        SudokuBoard board2 = new SudokuBoard(new BacktrackingSudokuSolver());
-        board2.solveGame();
         try {
             SudokuBoard copy = board.clone();
-            SudokuBoard copy2 = board2.clone();
+            SudokuBoard copy2 = board.clone();
             DifficultyLevel dl2 = new DifficultyLevel(DifficultyLevel.Difficulty.Medium);
             dl2.createBoard(copy);
             assertFalse(copy.checkBoard());

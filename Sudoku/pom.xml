@@ -16,8 +16,8 @@
     <url>http://maven.apache.org</url>
     <licenses>
         <license>
-            <name>The MIT License</name>
-            <url>https://gist.githubusercontent.com/RubingHan/7154917/raw/ecef95e134f9161a8fe5034456133dc71613c34b/MIT-LICENSE.txt</url>
+            <name>GPL License</name>
+            <url>./License.txt</url>
         </license>
     </licenses>
     <organization>
