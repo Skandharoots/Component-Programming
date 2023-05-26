@@ -1,10 +1,12 @@
 package pl.cp.view;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import pl.cp.DifficultyLevel;
 
@@ -25,7 +27,8 @@ public class HelloController {
     public void setBoardScene() throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("board-view.fxml"));
         Stage window = (Stage) easy.getScene().getWindow();
-        window.setScene(new Scene(root, 500, 500));
+        Scene scene = new Scene(root, 500, 500);
+        window.setScene(scene);
     }
 
 
