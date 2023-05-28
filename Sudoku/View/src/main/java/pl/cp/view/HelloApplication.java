@@ -12,7 +12,7 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader =
                 new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 500, 700);
-        stage.setTitle("Hello!");
+        stage.setTitle("Sudoku!");
         stage.setScene(scene);
         stage.show();
     }

@@ -25,6 +25,10 @@ public class SudokuBoard implements Cloneable {
         this.instance = instance;
     }
 
+    public SudokuField getField(int i, int j) {
+        return board.get(i)[j];
+    }
+
     public Integer getNumber(int i, int j) {
         return board.get(i)[j].getFieldValue();
     }

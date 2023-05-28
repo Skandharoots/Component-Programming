@@ -19,7 +19,7 @@ public class SudokuField implements Comparable<SudokuField>, Cloneable {
         return value;
     }
 
-    public void setFieldValue(Integer value) {
+    public void setFieldValue(int value) {
         this.value = value;
     }
 

@@ -117,4 +117,11 @@ class SudokuBoardTest {
         assertFalse(Sudoku.hashCode() == Sudoku2.hashCode());
     }
 
+    @Test
+    void testGetField() {
+        SudokuBoard board = new SudokuBoard(new BacktrackingSudokuSolver());
+        board.solveGame();
+        assertFalse(board.getField(0, 0) == null);
+    }
+
 }
