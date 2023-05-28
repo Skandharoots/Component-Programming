@@ -1,11 +1,15 @@
 package pl.cp.view;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.adapter.JavaBeanIntegerProperty;
+import javafx.beans.property.adapter.JavaBeanIntegerPropertyBuilder;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
+import javafx.util.StringConverter;
+import javafx.util.converter.NumberStringConverter;
 import pl.cp.BacktrackingSudokuSolver;
 import pl.cp.SudokuBoard;
 
@@ -20,19 +24,20 @@ public class BoardController {
     private SudokuBoard board;
 
     @FXML
-    public void initialize() {
+    public void initialize() throws NoSuchMethodException {
         board = new SudokuBoard(new BacktrackingSudokuSolver());
         board.solveGame();
         HelloController.difficultyLevel.createBoard(board);
         populateGrid();
     }
 
-    public void populateGrid() {
+    public void populateGrid() throws NoSuchMethodException {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-
+                int finali = i;
+                int finalj = j;
                 TextField field = new TextField();
-                String fieldval = Integer.toString(board.getNumber(i, j));
+                String fieldval = String.valueOf(board.getNumber(i, j));
                 field.setText(fieldval.equals("0") ? "" : fieldval);
                 field.setAlignment(Pos.CENTER);
                 field.setPrefHeight(40);
@@ -47,7 +52,13 @@ public class BoardController {
                     }
 
                 });
+                JavaBeanIntegerPropertyBuilder builder = JavaBeanIntegerPropertyBuilder.create();
+                JavaBeanIntegerProperty prop = builder.bean(board.getNumber(i, j))
+                        .name("fieldValue").build();
+                StringConverter<Number> converter = new NumberStringConverter();
+                Bindings.bindBidirectional(field.textProperty(), prop, converter);
                 myGrid.add(field, i, j);
+
             }
         }
     }
