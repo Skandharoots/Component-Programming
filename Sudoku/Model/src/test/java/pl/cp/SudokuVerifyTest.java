@@ -29,6 +29,9 @@ package pl.cp;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class SudokuVerifyTest {
@@ -43,6 +46,26 @@ class SudokuVerifyTest {
         assertTrue(board.getRow(2).verify());
         assertTrue(board.getColumn(5).verify());
         assertTrue(board.getBox(4, 6).verify());
+    }
+
+    @Test
+    void testSudokuVerifyEquals() {
+        int[] c = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        SudokuVerify ver1 = new SudokuBox(c);
+        SudokuVerify ver2 = null;
+        assertTrue(ver1.equals(ver1));
+        assertFalse(ver1.equals(ver2));
+    }
+
+    @Test
+    void testSudokuVerifyHash() {
+        int[] c = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        SudokuVerify ver1 = new SudokuBox(c);
+        SudokuVerify ver2 = new SudokuColumn(c);
+        Map<SudokuVerify, Integer> map = new HashMap<SudokuVerify, Integer>();
+        map.put(ver1, 3);
+        map.put(ver2, 2);
+        assertTrue(ver1.hashCode() == ver2.hashCode());
     }
 
 }

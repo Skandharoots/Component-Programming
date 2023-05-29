@@ -67,16 +67,12 @@ public class BoardController {
                 field.setPrefWidth(20);
                 field.focusedProperty().addListener((arg0, oldValue, newValue) -> {
                     if (!newValue) {
-                        if (!field.getText().matches("[1-9]") || !board.checkBoard()) {
+                        if (!field.getText().matches("[1-9]")) {
                             field.setText("");
                         }
                     }
-
                 });
                 myGrid.add(field, i, j);
-
-
-
             }
         }
     }

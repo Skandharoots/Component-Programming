@@ -6,8 +6,4 @@ public class SudokuBox extends SudokuVerify implements Cloneable {
         super(box);
     }
 
-    @Override
-    public SudokuBox clone() throws CloneNotSupportedException {
-        return (SudokuBox) super.clone();
-    }
 }
