@@ -1,16 +1,19 @@
 package pl.cp.view;
 
-import javafx.event.EventHandler;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 import pl.cp.DifficultyLevel;
 
-public class HelloController {
+public class HelloController implements Initializable {
 
 
     @FXML
@@ -21,6 +24,11 @@ public class HelloController {
 
     @FXML
     Button hard;
+
+    @FXML
+    ChoiceBox<String> choiceBox;
+
+    private final String[] choiceb = {"English", "Polski"};
 
     static DifficultyLevel difficultyLevel;
 
@@ -48,5 +56,24 @@ public class HelloController {
     protected void onHardButtonClick() throws Exception {
         difficultyLevel = new DifficultyLevel(DifficultyLevel.Difficulty.Hard);
         setBoardScene();
+    }
+
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        choiceBox.getItems().addAll(choiceb);
+        choiceBox.setValue("English");
+        choiceBox.setOnAction(this::changeLanguage);
+    }
+
+    public void changeLanguage(ActionEvent event) {
+        String choice = choiceBox.getValue();
+        switch (choice) {
+            case "English":
+                break;
+            case "Polski":
+                break;
+            default:
+                break;
+        }
     }
 }
