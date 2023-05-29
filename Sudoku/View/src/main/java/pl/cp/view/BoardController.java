@@ -1,18 +1,23 @@
 package pl.cp.view;
 
+import java.io.IOException;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.adapter.JavaBeanIntegerProperty;
 import javafx.beans.property.adapter.JavaBeanIntegerPropertyBuilder;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import javafx.util.StringConverter;
-import javafx.util.converter.NumberStringConverter;
 import pl.cp.BacktrackingSudokuSolver;
+import pl.cp.Dao;
 import pl.cp.SudokuBoard;
-import pl.cp.SudokuField;
+import pl.cp.SudokuBoardDaoFactory;
 
 public class BoardController {
 
@@ -21,6 +26,12 @@ public class BoardController {
 
     @FXML
     Button backButton;
+
+    @FXML
+    Button loadbtn;
+
+    @FXML
+    Button savebtn;
 
     private SudokuBoard board;
 
@@ -75,5 +86,25 @@ public class BoardController {
                 myGrid.add(field, i, j);
             }
         }
+    }
+
+    public void onLoadButtonClick() throws NoSuchMethodException {
+        SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
+        Dao dao = factory.getFileDao("MySudoku.txt");
+        board = (SudokuBoard) dao.read();
+        populateGrid();
+    }
+
+    public void onSaveButtonClick() {
+        SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
+        Dao dao = factory.getFileDao("MySudoku.txt");
+        dao.write(board);
+    }
+
+    public void onMenuButtonClick() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
+        Stage window = (Stage) backButton.getScene().getWindow();
+        Scene scene = new Scene(root, 500, 500);
+        window.setScene(scene);
     }
 }
