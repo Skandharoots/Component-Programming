@@ -26,7 +26,7 @@
             </Menu>
          </menus>
       </MenuBar>
-      <Label fx:id="diffLabel" alignment="TOP_CENTER" layoutX="157.0" layoutY="67.0" prefHeight="33.0" prefWidth="185.0" text="Choose difficulty">
+      <Label fx:id="diffLabel" alignment="TOP_CENTER" layoutX="157.0" layoutY="67.0" prefHeight="33.0" prefWidth="185.0" text="%diffLabel.text">
          <font>
             <Font size="25.0" />
          </font>
@@ -34,17 +34,17 @@
             <Cursor fx:constant="NONE" />
          </cursor>
       </Label>
-      <Button fx:id="easy" layoutX="174.0" layoutY="129.0" mnemonicParsing="false" onAction="#onEasyButtonClick" prefHeight="50.0" prefWidth="150.0" text="Easy">
+      <Button fx:id="easy" layoutX="174.0" layoutY="129.0" mnemonicParsing="false" onAction="#onEasyButtonClick" prefHeight="50.0" prefWidth="150.0" text="%easyButton.text">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="medium" layoutX="174.0" layoutY="220.0" mnemonicParsing="false" onAction="#onMediumButtonClick" prefHeight="50.0" prefWidth="150.0" text="Medium">
+      <Button fx:id="medium" layoutX="174.0" layoutY="220.0" mnemonicParsing="false" onAction="#onMediumButtonClick" prefHeight="50.0" prefWidth="150.0" text="%mediumButton.text">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="hard" layoutX="175.0" layoutY="310.0" mnemonicParsing="false" onAction="#onHardButtonClick" prefHeight="50.0" prefWidth="150.0" text="Hard">
+      <Button fx:id="hard" layoutX="175.0" layoutY="310.0" mnemonicParsing="false" onAction="#onHardButtonClick" prefHeight="50.0" prefWidth="150.0" text="%hardButton.text">
          <font>
             <Font size="20.0" />
          </font>

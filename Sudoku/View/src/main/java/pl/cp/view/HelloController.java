@@ -1,6 +1,8 @@
 package pl.cp.view;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,6 +34,9 @@ public class HelloController {
     @FXML
     MenuItem polishChoice;
 
+    @FXML
+    static ResourceBundle activeBundle;
+
     static DifficultyLevel difficultyLevel;
 
     public void setBoardScene() throws Exception {
@@ -60,11 +65,30 @@ public class HelloController {
         setBoardScene();
     }
 
-    public void onEnglishItemClick(ActionEvent event) {
-        System.out.println("English selected.");
+    public void onEnglishItemClick(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader =
+                new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        Locale locale = new Locale.Builder().setRegion("en").setLanguage("US").build();
+        ResourceBundle bundle = ResourceBundle.getBundle("pl.cp.i18n.App", locale);
+        fxmlLoader.setResources(bundle);
+        Scene scene = new Scene(fxmlLoader.load(), 500, 500);
+        Stage stage = new Stage();
+        stage.setTitle("Sudoku!");
+        stage.setScene(scene);
+        stage.show();
     }
 
-    public void onPolishItemClick() {
-        System.out.println("Polski wybrany.");
+    public void onPolishItemClick() throws IOException {
+
+        FXMLLoader fxmlLoader =
+                new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        Locale locale = new Locale.Builder().setRegion("pl").setLanguage("PL").build();
+        ResourceBundle bundle = ResourceBundle.getBundle("pl.cp.i18n.App", locale);
+        fxmlLoader.setResources(bundle);
+        Scene scene = new Scene(fxmlLoader.load(), 500, 500);
+        Stage stage = new Stage();
+        stage.setTitle("Sudoku!");
+        stage.setScene(scene);
+        stage.show();
     }
 }
