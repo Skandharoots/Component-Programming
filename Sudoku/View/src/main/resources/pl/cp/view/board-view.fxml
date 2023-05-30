@@ -36,8 +36,8 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </GridPane>
-      <Button fx:id="backButton" layoutX="50.0" layoutY="35.0" mnemonicParsing="false" onAction="#onMenuButtonClick" prefHeight="22.0" prefWidth="68.0" text="Menu" />
-      <Button fx:id="loadbtn" layoutX="216.0" layoutY="35.0" mnemonicParsing="false" onAction="#onLoadButtonClick" prefHeight="22.0" prefWidth="68.0" text="Load" />
-      <Button fx:id="savebtn" layoutX="382.0" layoutY="35.0" mnemonicParsing="false" onAction="#onSaveButtonClick" prefHeight="22.0" prefWidth="68.0" text="Save" />
+      <Button fx:id="backButton" layoutX="50.0" layoutY="35.0" mnemonicParsing="false" onAction="#onMenuButtonClick" prefHeight="22.0" prefWidth="68.0" text="%menuButton.text" />
+      <Button fx:id="loadbtn" layoutX="216.0" layoutY="35.0" mnemonicParsing="false" onAction="#onLoadButtonClick" prefHeight="22.0" prefWidth="68.0" text="%loadButton.text" />
+      <Button fx:id="savebtn" layoutX="382.0" layoutY="35.0" mnemonicParsing="false" onAction="#onSaveButtonClick" prefHeight="22.0" prefWidth="68.0" text="%saveButton.text" />
    </children>
 </AnchorPane>

@@ -40,10 +40,18 @@ public class HelloController {
     static DifficultyLevel difficultyLevel;
 
     public void setBoardScene() throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("board-view.fxml"));
-        Stage window = (Stage) easy.getScene().getWindow();
-        Scene scene = new Scene(root, 500, 500);
-        window.setScene(scene);
+//        Parent root = FXMLLoader.load(getClass().getResource("board-view.fxml"));
+//        Stage window = (Stage) easy.getScene().getWindow();
+//        Scene scene = new Scene(root, 500, 500);
+//        window.setScene(scene);
+        FXMLLoader fxmlLoader =
+                new FXMLLoader(HelloApplication.class.getResource("board-view.fxml"));
+        fxmlLoader.setResources(activeBundle);
+        Scene scene = new Scene(fxmlLoader.load(), 500, 500);
+        Stage stage = (Stage) easy.getScene().getWindow();
+        stage.setTitle("Sudoku!");
+        stage.setScene(scene);
+        stage.show();
     }
 
 
@@ -69,8 +77,8 @@ public class HelloController {
         FXMLLoader fxmlLoader =
                 new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Locale locale = new Locale.Builder().setRegion("en").setLanguage("US").build();
-        ResourceBundle bundle = ResourceBundle.getBundle("pl.cp.i18n.App", locale);
-        fxmlLoader.setResources(bundle);
+        activeBundle = ResourceBundle.getBundle("pl.cp.i18n.App", locale);
+        fxmlLoader.setResources(activeBundle);
         Scene scene = new Scene(fxmlLoader.load(), 500, 500);
         Stage stage = (Stage) easy.getScene().getWindow();
         stage.setTitle("Sudoku!");
@@ -83,8 +91,8 @@ public class HelloController {
         FXMLLoader fxmlLoader =
                 new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Locale locale = new Locale.Builder().setRegion("pl").setLanguage("PL").build();
-        ResourceBundle bundle = ResourceBundle.getBundle("pl.cp.i18n.App", locale);
-        fxmlLoader.setResources(bundle);
+        activeBundle = ResourceBundle.getBundle("pl.cp.i18n.App", locale);
+        fxmlLoader.setResources(activeBundle);
         Scene scene = new Scene(fxmlLoader.load(), 500, 500);
         Stage stage = (Stage) easy.getScene().getWindow();
         stage.setTitle("Sudoku!");

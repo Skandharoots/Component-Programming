@@ -14,10 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
-import pl.cp.BacktrackingSudokuSolver;
-import pl.cp.Dao;
-import pl.cp.SudokuBoard;
-import pl.cp.SudokuBoardDaoFactory;
+import pl.cp.*;
 
 public class BoardController {
 
@@ -34,8 +31,6 @@ public class BoardController {
     Button savebtn;
 
     private SudokuBoard board;
-
-    private HelloApplication mainApp;
 
     @FXML
     public void initialize() throws NoSuchMethodException {
@@ -89,22 +84,34 @@ public class BoardController {
     }
 
     public void onLoadButtonClick() throws NoSuchMethodException {
-        SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
-        Dao dao = factory.getFileDao("MySudoku.txt");
-        board = (SudokuBoard) dao.read();
-        populateGrid();
+        try {
+            SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
+            Dao dao = factory.getFileDao("MySudoku.txt");
+            board = (SudokuBoard) dao.read();
+            populateGrid();
+        } catch (DaoExceptions e) {
+            System.out.println("Error!");
+        }
     }
 
     public void onSaveButtonClick() {
+        try {
         SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
         Dao dao = factory.getFileDao("MySudoku.txt");
         dao.write(board);
+        } catch (DaoExceptions e) {
+            System.out.println("Error!");
+        }
     }
 
     public void onMenuButtonClick() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
-        Stage window = (Stage) backButton.getScene().getWindow();
-        Scene scene = new Scene(root, 500, 500);
-        window.setScene(scene);
+        FXMLLoader fxmlLoader =
+                new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        fxmlLoader.setResources(HelloController.activeBundle);
+        Scene scene = new Scene(fxmlLoader.load(), 500, 500);
+        Stage stage = (Stage) backButton.getScene().getWindow();
+        stage.setTitle("Sudoku!");
+        stage.setScene(scene);
+        stage.show();
     }
 }
