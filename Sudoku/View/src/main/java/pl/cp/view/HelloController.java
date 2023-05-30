@@ -40,10 +40,6 @@ public class HelloController {
     static DifficultyLevel difficultyLevel;
 
     public void setBoardScene() throws Exception {
-//        Parent root = FXMLLoader.load(getClass().getResource("board-view.fxml"));
-//        Stage window = (Stage) easy.getScene().getWindow();
-//        Scene scene = new Scene(root, 500, 500);
-//        window.setScene(scene);
         FXMLLoader fxmlLoader =
                 new FXMLLoader(HelloApplication.class.getResource("board-view.fxml"));
         fxmlLoader.setResources(activeBundle);

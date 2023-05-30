@@ -7,14 +7,17 @@ import javafx.beans.property.adapter.JavaBeanIntegerPropertyBuilder;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
-import pl.cp.*;
+import pl.cp.BacktrackingSudokuSolver;
+import pl.cp.Dao;
+import pl.cp.DaoExceptions;
+import pl.cp.SudokuBoard;
+import pl.cp.SudokuBoardDaoFactory;
 
 public class BoardController {
 
