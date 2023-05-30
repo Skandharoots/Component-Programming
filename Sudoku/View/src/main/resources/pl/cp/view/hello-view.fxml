@@ -13,20 +13,20 @@
    <children>
       <MenuBar layoutY="1.0" prefHeight="26.0" prefWidth="500.0">
          <menus>
-            <Menu mnemonicParsing="false" text="Language">
+            <Menu fx:id="langMenu" mnemonicParsing="false" text="%langMenu.text">
                <items>
-                  <MenuItem fx:id="englishChoice" mnemonicParsing="false" onAction="#onEnglishItemClick" text="English" />
-                  <MenuItem fx:id="polishChoice" mnemonicParsing="false" onAction="#onPolishItemClick" text="Polski" />
+                  <MenuItem fx:id="englishChoice" mnemonicParsing="false" onAction="#onEnglishItemClick" text="%englishChoice.text" />
+                  <MenuItem fx:id="polishChoice" mnemonicParsing="false" onAction="#onPolishItemClick" text="%polishChoice.text" />
                </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Help">
+            <Menu fx:id="helpMenu" mnemonicParsing="false" text="%helpMenu.text">
                <items>
-                  <MenuItem mnemonicParsing="false" text="About" />
+                  <MenuItem fx:id="aboutItem" mnemonicParsing="false" text="%authorsChoice.text" />
                </items>
             </Menu>
          </menus>
       </MenuBar>
-      <Label fx:id="diffLabel" alignment="TOP_CENTER" layoutX="157.0" layoutY="67.0" prefHeight="33.0" prefWidth="185.0" text="%diffLabel.text">
+      <Label fx:id="diffLabel" alignment="TOP_CENTER" layoutX="100.0" layoutY="66.0" prefHeight="33.0" prefWidth="300.0" text="%diffLabel.text">
          <font>
             <Font size="25.0" />
          </font>

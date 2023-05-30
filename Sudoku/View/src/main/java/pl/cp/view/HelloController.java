@@ -72,7 +72,7 @@ public class HelloController {
         ResourceBundle bundle = ResourceBundle.getBundle("pl.cp.i18n.App", locale);
         fxmlLoader.setResources(bundle);
         Scene scene = new Scene(fxmlLoader.load(), 500, 500);
-        Stage stage = new Stage();
+        Stage stage = (Stage) easy.getScene().getWindow();
         stage.setTitle("Sudoku!");
         stage.setScene(scene);
         stage.show();
@@ -86,7 +86,7 @@ public class HelloController {
         ResourceBundle bundle = ResourceBundle.getBundle("pl.cp.i18n.App", locale);
         fxmlLoader.setResources(bundle);
         Scene scene = new Scene(fxmlLoader.load(), 500, 500);
-        Stage stage = new Stage();
+        Stage stage = (Stage) easy.getScene().getWindow();
         stage.setTitle("Sudoku!");
         stage.setScene(scene);
         stage.show();
