@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.cp.view.AuthorController">
+   <children>
+      <Label fx:id="authorsLabel" alignment="CENTER" layoutX="64.0" layoutY="81.0" prefHeight="45.0" prefWidth="373.0" text="%labelOne.text">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Label fx:id="authorsMarek" layoutX="168.0" layoutY="151.0" text="%auth1.text">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Label fx:id="authorsFilip" layoutX="168.0" layoutY="228.0" text="%auth2.text">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="76.0" layoutY="151.0" text="%numberAuth1.text">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="76.0" layoutY="228.0" text="%numberAuth2.text">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

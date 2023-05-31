@@ -89,8 +89,8 @@ public class BoardController {
     public void onLoadButtonClick() throws NoSuchMethodException {
         try {
             SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
-            Dao dao = factory.getFileDao("MySudoku.txt");
-            board = (SudokuBoard) dao.read();
+            Dao<SudokuBoard> dao = factory.getFileDao("MySudoku.txt");
+            board = dao.read();
             populateGrid();
         } catch (DaoExceptions e) {
             System.out.println("Error!");
@@ -100,7 +100,7 @@ public class BoardController {
     public void onSaveButtonClick() {
         try {
         SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
-        Dao dao = factory.getFileDao("MySudoku.txt");
+        Dao<SudokuBoard> dao = factory.getFileDao("MySudoku.txt");
         dao.write(board);
         } catch (DaoExceptions e) {
             System.out.println("Error!");

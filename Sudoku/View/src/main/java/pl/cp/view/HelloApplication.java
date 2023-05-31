@@ -15,6 +15,7 @@ public class HelloApplication extends Application {
                 new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Locale locale = new Locale.Builder().setRegion("en").setLanguage("US").build();
         HelloController.activeBundle = ResourceBundle.getBundle("pl.cp.i18n.App", locale);
+        HelloController.authorsBundle = ResourceBundle.getBundle("pl.cp.i18n.Authors", locale);
         fxmlLoader.setResources(HelloController.activeBundle);
         Scene scene = new Scene(fxmlLoader.load(), 500, 500);
         stage.setTitle("Sudoku!");
