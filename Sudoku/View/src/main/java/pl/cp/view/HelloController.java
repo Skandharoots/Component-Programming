@@ -53,19 +53,19 @@ public class HelloController {
 
     @FXML
     protected void onEasyButtonClick() throws Exception {
-        difficultyLevel = new DifficultyLevel(DifficultyLevel.Difficulty.Easy);
+        difficultyLevel = DifficultyLevel.Easy;
         setBoardScene();
     }
 
     @FXML
     protected void onMediumButtonClick() throws Exception {
-        difficultyLevel = new DifficultyLevel(DifficultyLevel.Difficulty.Medium);
+        difficultyLevel = DifficultyLevel.Medium;
         setBoardScene();
     }
 
     @FXML
     protected void onHardButtonClick() throws Exception {
-        difficultyLevel = new DifficultyLevel(DifficultyLevel.Difficulty.Hard);
+        difficultyLevel = DifficultyLevel.Hard;
         setBoardScene();
     }
 
