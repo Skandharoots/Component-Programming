@@ -12,6 +12,7 @@ public class DaoExceptions extends RuntimeException {
         Locale locale = Locale.getDefault(Locale.Category.DISPLAY);
         exceptions = ResourceBundle.getBundle("exceptions.Dao", locale);
     }
+
     public DaoExceptions(String message) {
         super(message);
     }

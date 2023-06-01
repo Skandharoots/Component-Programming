@@ -10,7 +10,8 @@ import org.slf4j.event.Level;
 
 public class FileSudokuBoardDao implements Dao<SudokuBoard> {
     private String fileName;
-    private static final Logger logger = LoggerFactory.getLogger(FileSudokuBoardDao.class.getName());
+    private static final Logger logger =
+            LoggerFactory.getLogger(FileSudokuBoardDao.class.getName());
 
     public FileSudokuBoardDao(String fileName) {
         this.fileName = fileName;
@@ -37,9 +38,9 @@ public class FileSudokuBoardDao implements Dao<SudokuBoard> {
                 }
             return board;
         } catch (Exception ex) {
-            logger.error(DaoExceptions.getDaoMessage("reader.fail"), Level.ERROR, ex);
+            logger.error(DaoExceptions.getDaoMessage("reader.fail"), Level.ERROR);
+            throw new DaoExceptions(DaoExceptions.getDaoMessage("reader.fail"));
         }
-        return null;
     }
 
     @Override
@@ -47,7 +48,8 @@ public class FileSudokuBoardDao implements Dao<SudokuBoard> {
         try (FileWriter writer = new FileWriter(fileName)) {
             writer.write(object.toString());
         } catch (IOException ex) {
-            logger.error(DaoExceptions.getDaoMessage("writer.fail"), Level.ERROR, ex);
+            logger.error(DaoExceptions.getDaoMessage("writer.fail"), Level.ERROR);
+            throw new DaoExceptions(DaoExceptions.getDaoMessage("writer.fail"));
         }
     }
 

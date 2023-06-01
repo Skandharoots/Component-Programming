@@ -34,7 +34,7 @@ public class SudokuBoardDaoTest {
         SudokuBoardDaoFactory factory3 = new SudokuBoardDaoFactory();
         Dao dao3 = factory3.getFileDao("?.txt");
         DaoExceptions thrown3 = assertThrows(DaoExceptions.class, () -> dao3.write(board), "Write failed");
-        assertTrue(thrown3.getMessage().contentEquals("Write failed"));
+        assertTrue(thrown3.getMessage().contentEquals("Writer failed"));
         assertDoesNotThrow(dao1::close);
         assertDoesNotThrow(dao2::close);
         assertDoesNotThrow(dao3::close);
