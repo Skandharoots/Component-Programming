@@ -33,10 +33,8 @@ public class HelloController {
     @FXML
     MenuItem aboutItem;
 
-    @FXML
     static ResourceBundle activeBundle;
 
-    @FXML
     static ResourceBundle authorsBundle;
 
     static DifficultyLevel difficultyLevel;
@@ -71,10 +69,10 @@ public class HelloController {
         setBoardScene();
     }
 
-    public void onEnglishItemClick(ActionEvent event) throws IOException {
+    public void onEnglishItemClick() throws IOException {
         FXMLLoader fxmlLoader =
                 new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Locale locale = new Locale.Builder().setRegion("en").setLanguage("US").build();
+        Locale locale = new Locale.Builder().setRegion("Us").setLanguage("en").build();
         activeBundle = ResourceBundle.getBundle("pl.cp.i18n.App", locale);
         authorsBundle = ResourceBundle.getBundle("pl.cp.i18n.Authors", locale);
         fxmlLoader.setResources(activeBundle);
@@ -88,7 +86,7 @@ public class HelloController {
     public void onPolishItemClick() throws IOException {
         FXMLLoader fxmlLoader =
                 new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Locale locale = new Locale.Builder().setRegion("pl").setLanguage("PL").build();
+        Locale locale = new Locale.Builder().setRegion("PL").setLanguage("pl").build();
         activeBundle = ResourceBundle.getBundle("pl.cp.i18n.App", locale);
         authorsBundle = ResourceBundle.getBundle("pl.cp.i18n.Authors", locale);
         fxmlLoader.setResources(activeBundle);

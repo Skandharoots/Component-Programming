@@ -13,7 +13,7 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader =
                 new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Locale locale = new Locale.Builder().setRegion("en").setLanguage("US").build();
+        Locale locale = new Locale.Builder().setRegion("US").setLanguage("en").build();
         HelloController.activeBundle = ResourceBundle.getBundle("pl.cp.i18n.App", locale);
         HelloController.authorsBundle = ResourceBundle.getBundle("pl.cp.i18n.Authors", locale);
         fxmlLoader.setResources(HelloController.activeBundle);
