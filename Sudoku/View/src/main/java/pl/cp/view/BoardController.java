@@ -59,7 +59,7 @@ public class BoardController {
                 JavaBeanIntegerPropertyBuilder builder = JavaBeanIntegerPropertyBuilder.create();
                 JavaBeanIntegerProperty prop = builder.bean(board.getField(i, j))
                         .name("FieldValue").build();
-                StringConverter<Number> c = new StringConverter<Number>() {
+                StringConverter<Number> c = new StringConverter<>() {
                     @Override
                     public String toString(Number number) {
                         if (number.equals(0)) {
@@ -93,7 +93,7 @@ public class BoardController {
     public void onLoadButtonClick() throws NoSuchMethodException {
         try {
             SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
-            Dao<SudokuBoard> dao = factory.getFileDao("bs.txt");
+            Dao<SudokuBoard> dao = factory.getFileDao("MySudoku.txt");
             board = dao.read();
             populateGrid();
         } catch (DaoExceptions e) {
