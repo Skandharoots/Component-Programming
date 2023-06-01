@@ -6,10 +6,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.event.Level;
 
 public class FileSudokuBoardDao implements Dao<SudokuBoard> {
     private String fileName;
-    private Logger logger = LoggerFactory.getLogger(FileSudokuBoardDao.class);
+    private static final Logger logger = LoggerFactory.getLogger(FileSudokuBoardDao.class.getName());
 
     public FileSudokuBoardDao(String fileName) {
         this.fileName = fileName;
@@ -18,11 +19,11 @@ public class FileSudokuBoardDao implements Dao<SudokuBoard> {
     @Override
     public SudokuBoard read() {
         try (FileReader reader = new FileReader(fileName);
-        BufferedReader in = new BufferedReader(reader)) {
+            BufferedReader in = new BufferedReader(reader)) {
             SudokuBoard board = new SudokuBoard(new BacktrackingSudokuSolver());
             String line = in.readLine();
             if (false == line.matches("")) {
-                throw new DaoExceptions("Format error");
+                throw new DaoExceptions("Reader failed");
             }
             for (int ln = 0; ln < 9; ln++) {
                 line = in.readLine();
@@ -34,11 +35,11 @@ public class FileSudokuBoardDao implements Dao<SudokuBoard> {
                         board.setNumber(ln, k, Integer.valueOf(fieldValues[k + 1]));
                     }
                 }
-
             return board;
         } catch (Exception ex) {
-            throw new DaoExceptions("Reader failed");
+            logger.error(DaoExceptions.getDaoMessage("reader.fail"), Level.ERROR, ex);
         }
+        return null;
     }
 
     @Override
@@ -46,7 +47,7 @@ public class FileSudokuBoardDao implements Dao<SudokuBoard> {
         try (FileWriter writer = new FileWriter(fileName)) {
             writer.write(object.toString());
         } catch (IOException ex) {
-            throw new DaoExceptions("Write failed", ex);
+            logger.error(DaoExceptions.getDaoMessage("writer.fail"), Level.ERROR, ex);
         }
     }
 

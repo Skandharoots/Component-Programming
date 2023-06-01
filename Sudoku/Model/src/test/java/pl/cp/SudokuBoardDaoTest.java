@@ -1,10 +1,8 @@
 package pl.cp;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.ThrowingSupplier;
+import org.slf4j.LoggerFactory;
 
-import java.io.FileReader;
-import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -26,8 +24,7 @@ public class SudokuBoardDaoTest {
         SudokuBoardDaoFactory factory1 = new SudokuBoardDaoFactory();
         SudokuBoard board = new SudokuBoard(new BacktrackingSudokuSolver());
         board.solveGame();
-        String s = null;
-        Dao dao1 = factory1.getFileDao("Wrong.txt");
+        Dao<SudokuBoard> dao1 = factory1.getFileDao("Wrong.txt");
         DaoExceptions thrown1 = assertThrows(DaoExceptions.class, () -> dao1.read(), "Reader failed");
         assertTrue(thrown1.getMessage().contentEquals("Reader failed"));
         SudokuBoardDaoFactory factory2 = new SudokuBoardDaoFactory();
