@@ -4,9 +4,12 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class FileSudokuBoardDao implements Dao<SudokuBoard> {
     private String fileName;
+    private Logger logger = LoggerFactory.getLogger(FileSudokuBoardDao.class);
 
     public FileSudokuBoardDao(String fileName) {
         this.fileName = fileName;
@@ -49,6 +52,6 @@ public class FileSudokuBoardDao implements Dao<SudokuBoard> {
 
     @Override
     public void close() {
-        System.out.println("Closed The Resource");
+        logger.info("Resource successfully closed");
     }
 }

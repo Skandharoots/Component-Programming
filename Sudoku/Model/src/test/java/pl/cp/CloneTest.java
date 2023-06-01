@@ -16,12 +16,10 @@ public class CloneTest {
             assertTrue(board.equals(clone));
             //assertTrue(board.equals(clone2));
             clone.setNumber(0, 0, 0);
-            System.out.println(board);
-            System.out.println(clone);
             assertFalse(board.equals(clone));
             //assertTrue(board.equals(clone2));
         } catch (CloneNotSupportedException ex) {
-            System.out.println("Clone not supported");
+
         }
     }
 

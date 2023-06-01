@@ -15,7 +15,6 @@ class SudokuSolverTest {
                 assertFalse(sudoku.getNumber(i, j).equals(0));
             }
         }
-        System.out.println(sudoku);
     }
 
 }
