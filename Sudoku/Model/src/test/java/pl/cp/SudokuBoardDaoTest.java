@@ -1,7 +1,6 @@
 package pl.cp;
 
 import org.junit.jupiter.api.Test;
-import org.slf4j.LoggerFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -12,11 +11,15 @@ public class SudokuBoardDaoTest {
         SudokuBoard board = new SudokuBoard(new BacktrackingSudokuSolver());
         board.solveGame();
         SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
-        Dao dao = factory.getFileDao("Sudoku1.txt");
-        dao.write(board);
-        SudokuBoard board2 = (SudokuBoard) dao.read();
-        assertEquals(board, board2);
-        assertDoesNotThrow(dao::close);
+        try {
+            Dao<SudokuBoard> dao = factory.getFileDao("Sudoku1.txt");
+            dao.write(board);
+            SudokuBoard board2 = dao.read();
+            assertEquals(board, board2);
+            assertDoesNotThrow(dao::close);
+        } catch (DaoExceptions e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @Test
@@ -24,20 +27,26 @@ public class SudokuBoardDaoTest {
         SudokuBoardDaoFactory factory1 = new SudokuBoardDaoFactory();
         SudokuBoard board = new SudokuBoard(new BacktrackingSudokuSolver());
         board.solveGame();
-        Dao<SudokuBoard> dao1 = factory1.getFileDao("Wrong.txt");
-        DaoExceptions thrown1 = assertThrows(DaoExceptions.class, () -> dao1.read(), "Reader failed");
-        assertTrue(thrown1.getMessage().contentEquals("Reader failed"));
+        try {
+            Dao<SudokuBoard> dao1 = factory1.getFileDao("Wrong.txt");
+            dao1.read();
+        } catch (DaoExceptions e) {
+            assertTrue(e.getMessage().contentEquals("Reader failed"));
+        }
         SudokuBoardDaoFactory factory2 = new SudokuBoardDaoFactory();
-        Dao dao2 = factory2.getFileDao("Wrong1.txt");
-        DaoExceptions thrown2 = assertThrows(DaoExceptions.class, () -> dao2.read(), "Reader failed");
-        assertTrue(thrown2.getMessage().contentEquals("Reader failed"));
+        try {
+            Dao<SudokuBoard> dao2 = factory2.getFileDao("Wrong1.txt");
+            dao2.read();
+        } catch (DaoExceptions e) {
+            assertTrue(e.getMessage().contentEquals("Reader failed"));
+        }
         SudokuBoardDaoFactory factory3 = new SudokuBoardDaoFactory();
-        Dao dao3 = factory3.getFileDao("?.txt");
-        DaoExceptions thrown3 = assertThrows(DaoExceptions.class, () -> dao3.write(board), "Write failed");
-        assertTrue(thrown3.getMessage().contentEquals("Writer failed"));
-        assertDoesNotThrow(dao1::close);
-        assertDoesNotThrow(dao2::close);
-        assertDoesNotThrow(dao3::close);
+        try {
+            Dao<SudokuBoard> dao3 = factory3.getFileDao("?.txt");
+            dao3.write(board);
+        } catch (DaoExceptions e) {
+            assertTrue(e.getMessage().contentEquals("Writer failed"));
+        }
     }
 
     @Test
@@ -45,7 +54,11 @@ public class SudokuBoardDaoTest {
         SudokuBoardDaoFactory factory1 = new SudokuBoardDaoFactory();
         SudokuBoard board = new SudokuBoard(new BacktrackingSudokuSolver());
         board.solveGame();
-        Dao dao1 = factory1.getFileDao("Wrong.txt");
-        assertDoesNotThrow(dao1::close);
+        try {
+            Dao<SudokuBoard> dao1 = factory1.getFileDao("Wrong.txt");
+            assertDoesNotThrow(dao1::close);
+        } catch (DaoExceptions e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

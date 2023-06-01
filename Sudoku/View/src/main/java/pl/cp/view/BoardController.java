@@ -13,11 +13,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pl.cp.BacktrackingSudokuSolver;
 import pl.cp.Dao;
 import pl.cp.DaoExceptions;
 import pl.cp.SudokuBoard;
 import pl.cp.SudokuBoardDaoFactory;
+
+
 
 public class BoardController {
 
@@ -34,6 +38,9 @@ public class BoardController {
     Button savebtn;
 
     private SudokuBoard board;
+
+    private static final Logger logger =
+            LoggerFactory.getLogger(BoardController.class.getName());
 
     @FXML
     public void initialize() throws NoSuchMethodException {
@@ -52,7 +59,6 @@ public class BoardController {
                 JavaBeanIntegerPropertyBuilder builder = JavaBeanIntegerPropertyBuilder.create();
                 JavaBeanIntegerProperty prop = builder.bean(board.getField(i, j))
                         .name("FieldValue").build();
-                //StringConverter<Number> converter = new NumberStringConverter();
                 StringConverter<Number> c = new StringConverter<Number>() {
                     @Override
                     public String toString(Number number) {
@@ -87,11 +93,11 @@ public class BoardController {
     public void onLoadButtonClick() throws NoSuchMethodException {
         try {
             SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
-            Dao<SudokuBoard> dao = factory.getFileDao("MySudoku.txt");
+            Dao<SudokuBoard> dao = factory.getFileDao("bs.txt");
             board = dao.read();
             populateGrid();
         } catch (DaoExceptions e) {
-            System.out.println("Error!");
+            logger.error(DaoExceptions.getDaoMessage("reader.fail"), System.Logger.Level.ERROR);
         }
     }
 
@@ -101,7 +107,7 @@ public class BoardController {
         Dao<SudokuBoard> dao = factory.getFileDao("MySudoku.txt");
         dao.write(board);
         } catch (DaoExceptions e) {
-            System.out.println("Error!");
+            logger.error(DaoExceptions.getDaoMessage("writer.fail"), System.Logger.Level.ERROR);
         }
     }
 

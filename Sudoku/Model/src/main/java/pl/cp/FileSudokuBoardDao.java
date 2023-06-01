@@ -24,13 +24,13 @@ public class FileSudokuBoardDao implements Dao<SudokuBoard> {
             SudokuBoard board = new SudokuBoard(new BacktrackingSudokuSolver());
             String line = in.readLine();
             if (false == line.matches("")) {
-                throw new DaoExceptions("Reader failed");
+                throw new DaoExceptions(DaoExceptions.getDaoMessage("reader.fail"));
             }
             for (int ln = 0; ln < 9; ln++) {
                 line = in.readLine();
                 String[] fieldValues = line.split(",");
                 if (fieldValues.length != 10) {
-                    throw new DaoExceptions("Format error");
+                    throw new DaoExceptions(DaoExceptions.getDaoMessage("reader.fail"));
                 }
                     for (int k = 0; k < 9; k++) {
                         board.setNumber(ln, k, Integer.valueOf(fieldValues[k + 1]));
@@ -39,7 +39,7 @@ public class FileSudokuBoardDao implements Dao<SudokuBoard> {
             return board;
         } catch (Exception ex) {
             logger.error(DaoExceptions.getDaoMessage("reader.fail"), Level.ERROR);
-            throw new DaoExceptions(DaoExceptions.getDaoMessage("reader.fail"));
+            throw new DaoExceptions(DaoExceptions.getDaoMessage("reader.fail"), ex);
         }
     }
 
@@ -49,7 +49,7 @@ public class FileSudokuBoardDao implements Dao<SudokuBoard> {
             writer.write(object.toString());
         } catch (IOException ex) {
             logger.error(DaoExceptions.getDaoMessage("writer.fail"), Level.ERROR);
-            throw new DaoExceptions(DaoExceptions.getDaoMessage("writer.fail"));
+            throw new DaoExceptions(DaoExceptions.getDaoMessage("writer.fail"), ex);
         }
     }
 

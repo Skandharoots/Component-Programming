@@ -1,7 +1,6 @@
 package pl.cp;
 
 import java.util.Locale;
-import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 public class DaoExceptions extends RuntimeException {
