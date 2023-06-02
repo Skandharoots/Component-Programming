@@ -21,8 +21,6 @@ import pl.cp.DaoExceptions;
 import pl.cp.SudokuBoard;
 import pl.cp.SudokuBoardDaoFactory;
 
-
-
 public class BoardController {
 
     @FXML
@@ -39,8 +37,7 @@ public class BoardController {
 
     private SudokuBoard board;
 
-    private static final Logger logger =
-            LoggerFactory.getLogger(BoardController.class.getName());
+    private static Logger logger = LoggerFactory.getLogger(BoardController.class.getName());
 
     @FXML
     public void initialize() throws NoSuchMethodException {
@@ -59,7 +56,8 @@ public class BoardController {
                 JavaBeanIntegerPropertyBuilder builder = JavaBeanIntegerPropertyBuilder.create();
                 JavaBeanIntegerProperty prop = builder.bean(board.getField(i, j))
                         .name("FieldValue").build();
-                StringConverter<Number> c = new StringConverter<>() {
+                //StringConverter<Number> converter = new NumberStringConverter();
+                StringConverter<Number> c = new StringConverter<Number>() {
                     @Override
                     public String toString(Number number) {
                         if (number.equals(0)) {
@@ -93,11 +91,11 @@ public class BoardController {
     public void onLoadButtonClick() throws NoSuchMethodException {
         try {
             SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
-            Dao<SudokuBoard> dao = factory.getFileDao("MySudoku.txt");
+            Dao<SudokuBoard> dao = factory.getFileDao("bs.txt");
             board = dao.read();
             populateGrid();
         } catch (DaoExceptions e) {
-            logger.error(DaoExceptions.getDaoMessage("reader.fail"), System.Logger.Level.ERROR);
+            logger.error(e.getLocalizedMessage(), e);
         }
     }
 
@@ -107,7 +105,7 @@ public class BoardController {
         Dao<SudokuBoard> dao = factory.getFileDao("MySudoku.txt");
         dao.write(board);
         } catch (DaoExceptions e) {
-            logger.error(DaoExceptions.getDaoMessage("writer.fail"), System.Logger.Level.ERROR);
+            System.out.println("Error!");
         }
     }
 
