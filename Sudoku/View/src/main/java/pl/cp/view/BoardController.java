@@ -88,24 +88,40 @@ public class BoardController {
         }
     }
 
-    public void onLoadButtonClick() throws NoSuchMethodException {
+    private void loadBoard() throws NoSuchMethodException {
         try {
             SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
             Dao<SudokuBoard> dao = factory.getFileDao("bs.txt");
             board = dao.read();
             populateGrid();
         } catch (DaoExceptions e) {
+            throw new LoadException(LoadException.LOADER_FAIL, e);
+        }
+    }
+
+    private void saveBoard() {
+        try {
+            SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
+            Dao<SudokuBoard> dao = factory.getFileDao("MySudoku.txt");
+            dao.write(board);
+        } catch (DaoExceptions e) {
+            throw new LoadException(LoadException.READER_FAIL, e);
+        }
+    }
+
+    public void onLoadButtonClick()  {
+        try {
+            loadBoard();
+        } catch (LoadException | NoSuchMethodException e) {
             logger.error(e.getLocalizedMessage(), e);
         }
     }
 
     public void onSaveButtonClick() {
         try {
-        SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
-        Dao<SudokuBoard> dao = factory.getFileDao("MySudoku.txt");
-        dao.write(board);
-        } catch (DaoExceptions e) {
-            System.out.println("Error!");
+            saveBoard();
+        } catch (LoadException e) {
+            logger.error(e.getLocalizedMessage(), e);
         }
     }
 

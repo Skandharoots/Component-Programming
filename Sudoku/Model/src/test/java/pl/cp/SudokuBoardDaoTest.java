@@ -17,7 +17,7 @@ public class SudokuBoardDaoTest {
         try {
             Dao<SudokuBoard> dao = factory.getFileDao("Sudoku1.txt");
             dao.write(board);
-            SudokuBoard board2 = (SudokuBoard) dao.read();
+            SudokuBoard board2 = dao.read();
             assertEquals(board, board2);
             assertDoesNotThrow(dao::close);
         } catch (DaoExceptions e) {

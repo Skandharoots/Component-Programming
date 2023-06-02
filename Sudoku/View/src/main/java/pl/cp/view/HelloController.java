@@ -34,6 +34,8 @@ public class HelloController {
 
     static ResourceBundle activeBundle;
 
+    static Locale activeLocale;
+
     static ResourceBundle authorsBundle;
 
     static DifficultyLevel difficultyLevel;
@@ -69,11 +71,11 @@ public class HelloController {
     }
 
     public void onEnglishItemClick() throws IOException {
+        activeLocale = new Locale.Builder().setRegion("Us").setLanguage("en").build();
+        activeBundle = ResourceBundle.getBundle("pl.cp.i18n.App", activeLocale);
+        authorsBundle = ResourceBundle.getBundle("pl.cp.view.Authors", activeLocale);
         FXMLLoader fxmlLoader =
                 new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Locale locale = new Locale.Builder().setRegion("Us").setLanguage("en").build();
-        activeBundle = ResourceBundle.getBundle("pl.cp.i18n.App", locale);
-        authorsBundle = ResourceBundle.getBundle("pl.cp.view.Authors", locale);
         fxmlLoader.setResources(activeBundle);
         Scene scene = new Scene(fxmlLoader.load(), 500, 500);
         Stage stage = (Stage) easy.getScene().getWindow();
@@ -83,11 +85,11 @@ public class HelloController {
     }
 
     public void onPolishItemClick() throws IOException {
+        activeLocale = new Locale.Builder().setRegion("PL").setLanguage("pl").build();
+        activeBundle = ResourceBundle.getBundle("pl.cp.i18n.App", activeLocale);
+        authorsBundle = ResourceBundle.getBundle("pl.cp.view.Authors", activeLocale);
         FXMLLoader fxmlLoader =
                 new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Locale locale = new Locale.Builder().setRegion("PL").setLanguage("pl").build();
-        activeBundle = ResourceBundle.getBundle("pl.cp.i18n.App", locale);
-        authorsBundle = ResourceBundle.getBundle("pl.cp.view.Authors", locale);
         fxmlLoader.setResources(activeBundle);
         Scene scene = new Scene(fxmlLoader.load(), 500, 500);
         Stage stage = (Stage) easy.getScene().getWindow();
