@@ -73,7 +73,7 @@ public class HelloController {
                 new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Locale locale = new Locale.Builder().setRegion("Us").setLanguage("en").build();
         activeBundle = ResourceBundle.getBundle("pl.cp.i18n.App", locale);
-        authorsBundle = ResourceBundle.getBundle("pl.cp.i18n.Authors", locale);
+        authorsBundle = ResourceBundle.getBundle("pl.cp.view.Authors", locale);
         fxmlLoader.setResources(activeBundle);
         Scene scene = new Scene(fxmlLoader.load(), 500, 500);
         Stage stage = (Stage) easy.getScene().getWindow();
@@ -87,7 +87,7 @@ public class HelloController {
                 new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Locale locale = new Locale.Builder().setRegion("PL").setLanguage("pl").build();
         activeBundle = ResourceBundle.getBundle("pl.cp.i18n.App", locale);
-        authorsBundle = ResourceBundle.getBundle("pl.cp.i18n.Authors", locale);
+        authorsBundle = ResourceBundle.getBundle("pl.cp.view.Authors", locale);
         fxmlLoader.setResources(activeBundle);
         Scene scene = new Scene(fxmlLoader.load(), 500, 500);
         Stage stage = (Stage) easy.getScene().getWindow();
