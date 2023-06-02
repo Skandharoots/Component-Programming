@@ -2,25 +2,22 @@ package pl.cp.view;
 
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
-import pl.cp.DaoExceptions;
 
-public class LoadException extends DaoExceptions {
+public class NoMethodException extends NoSuchMethodException {
 
     private static ResourceBundle messages;
 
-    public static String LOADER_FAIL = "loader.fail";
+    public static String METHOD_NULL = "method.null";
 
-    public static String READER_FAIL = "reader.fail";
 
     public static void setBundle() {
-        messages = ResourceBundle.getBundle("pl.cp.exceptions.Load", HelloController.activeLocale);
+        messages = ResourceBundle
+                .getBundle("pl.cp.exceptions.NoMethod", HelloController.activeLocale);
     }
 
-
-    public LoadException(String message, Throwable cause) {
-        super(message, cause);
+    public NoMethodException(String message) {
+        super(message);
     }
-
 
     @Override
     public String getLocalizedMessage() {

@@ -40,62 +40,78 @@ public class BoardController {
     private static Logger logger = LoggerFactory.getLogger(BoardController.class.getName());
 
     @FXML
-    public void initialize() throws NoSuchMethodException {
+    public void initialize() {
         board = new SudokuBoard(new BacktrackingSudokuSolver());
         board.solveGame();
         HelloController.difficultyLevel.createBoard(board);
-        populateGrid();
-    }
-
-    public void populateGrid() throws NoSuchMethodException {
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                TextField field = new TextField();
-                String fieldval = String.valueOf(board.getNumber(i, j));
-                field.setText(fieldval.equals("0") ? "" : fieldval);
-                JavaBeanIntegerPropertyBuilder builder = JavaBeanIntegerPropertyBuilder.create();
-                JavaBeanIntegerProperty prop = builder.bean(board.getField(i, j))
-                        .name("FieldValue").build();
-                //StringConverter<Number> converter = new NumberStringConverter();
-                StringConverter<Number> c = new StringConverter<Number>() {
-                    @Override
-                    public String toString(Number number) {
-                        if (number.equals(0)) {
-                            return "";
-                        }
-                        return number.toString();
-                    }
-
-                    @Override
-                    public Number fromString(String s) {
-                        if (s.equals("")) {
-                            return 0;
-                        }
-                        return Integer.parseInt(s);
-                    }
-                };
-                Bindings.bindBidirectional(field.textProperty(), prop, c);
-                field.setAlignment(Pos.CENTER);
-                field.setPrefHeight(40);
-                field.setPrefWidth(20);
-                field.focusedProperty().addListener((arg0, oldValue, newValue) -> {
-                    if (!newValue && !field.getText().matches("[1-9]")) {
-                            field.setText("");
-                        }
-                });
-                myGrid.add(field, i, j);
-            }
+        try {
+            populateGrid();
+        } catch (NoMethodException e) {
+            logger.error(e.getLocalizedMessage());
         }
     }
 
-    private void loadBoard() throws NoSuchMethodException {
+    public void populateGrid() throws NoMethodException {
+        try {
+            for (int i = 0; i < 9; i++) {
+                for (int j = 0; j < 9; j++) {
+                    TextField field = new TextField();
+                    String fieldval = String.valueOf(board.getNumber(i, j));
+                    field.setText(fieldval.equals("0") ? "" : fieldval);
+                    JavaBeanIntegerPropertyBuilder builder =
+                            JavaBeanIntegerPropertyBuilder.create();
+                    JavaBeanIntegerProperty prop = builder.bean(board.getField(i, j))
+                            .name("FieldValue").build();
+                    StringConverter<Number> c = new StringConverter<Number>() {
+                        @Override
+                        public String toString(Number number) {
+                            if (number.equals(0)) {
+                                return "";
+                            }
+                            return number.toString();
+                        }
+
+                        @Override
+                        public Number fromString(String s) {
+                            if (s.equals("")) {
+                                return 0;
+                            }
+                            return Integer.parseInt(s);
+                        }
+                    };
+                    Bindings.bindBidirectional(field.textProperty(), prop, c);
+                    field.setAlignment(Pos.CENTER);
+                    field.setPrefHeight(40);
+                    field.setPrefWidth(20);
+                    field.focusedProperty().addListener((arg0, oldValue, newValue) -> {
+                        if (!newValue && !field.getText().matches("[1-9]")) {
+                            field.setText("");
+                        }
+                    });
+                    myGrid.add(field, i, j);
+                }
+            }
+        } catch (NoSuchMethodException e) {
+            NoMethodException ex = new NoMethodException(NoMethodException.METHOD_NULL);
+            ex.setBundle();
+            throw ex;
+        }
+    }
+
+    private void loadBoard() throws NoMethodException {
         try {
             SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
             Dao<SudokuBoard> dao = factory.getFileDao("bs.txt");
             board = dao.read();
             populateGrid();
         } catch (DaoExceptions e) {
-            throw new LoadException(LoadException.LOADER_FAIL, e);
+            LoadException ex = new LoadException(LoadException.LOADER_FAIL, e);
+            ex.setBundle();
+            throw ex;
+        } catch (NoSuchMethodException e) {
+            NoMethodException ex = new NoMethodException(NoMethodException.METHOD_NULL);
+            ex.setBundle();
+            throw ex;
         }
     }
 
@@ -105,15 +121,17 @@ public class BoardController {
             Dao<SudokuBoard> dao = factory.getFileDao("MySudoku.txt");
             dao.write(board);
         } catch (DaoExceptions e) {
-            throw new LoadException(LoadException.READER_FAIL, e);
+            LoadException ex = new LoadException(LoadException.READER_FAIL, e);
+            ex.setBundle();
+            throw ex;
         }
     }
 
     public void onLoadButtonClick()  {
         try {
             loadBoard();
-        } catch (LoadException | NoSuchMethodException e) {
-            logger.error(e.getLocalizedMessage(), e);
+        } catch (LoadException | NoMethodException e) {
+            logger.error(e.getLocalizedMessage());
         }
     }
 
@@ -121,7 +139,7 @@ public class BoardController {
         try {
             saveBoard();
         } catch (LoadException e) {
-            logger.error(e.getLocalizedMessage(), e);
+            logger.error(e.getLocalizedMessage());
         }
     }
 

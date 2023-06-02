@@ -32,13 +32,13 @@ public class HelloController {
     @FXML
     MenuItem aboutItem;
 
-    static ResourceBundle activeBundle;
+    public static ResourceBundle activeBundle;
 
-    static Locale activeLocale;
+    public static Locale activeLocale;
 
-    static ResourceBundle authorsBundle;
+    public static ResourceBundle authorsBundle;
 
-    static DifficultyLevel difficultyLevel;
+    public static DifficultyLevel difficultyLevel;
 
     public void setBoardScene() throws Exception {
         FXMLLoader fxmlLoader =
