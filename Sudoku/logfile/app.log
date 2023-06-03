@@ -5,3 +5,5 @@
 2023-06-03 01:48:08.746 ERROR [JavaFX Application Thread] [pl.cp.view@2.0-Snapshot/pl.cp.view.BoardController.onLoadButtonClick(BoardController.java:129)] - Cannot read board from file.
 2023-06-03 01:50:28.092 ERROR [JavaFX Application Thread] [pl.cp.view@2.0-Snapshot/pl.cp.view.BoardController.onLoadButtonClick(BoardController.java:134)] - Cannot read board from file.
 2023-06-03 01:50:33.532 ERROR [JavaFX Application Thread] [pl.cp.view@2.0-Snapshot/pl.cp.view.BoardController.onLoadButtonClick(BoardController.java:134)] - Nie mo?na wczyta? planszy z pliku.
+2023-06-03 13:33:42.593 ERROR [JavaFX Application Thread] [pl.cp.view@2.0-Snapshot/pl.cp.view.BoardController.onLoadButtonClick(BoardController.java:134)] - Cannot read board from file.
+2023-06-03 13:33:53.012 ERROR [JavaFX Application Thread] [pl.cp.view@2.0-Snapshot/pl.cp.view.BoardController.onLoadButtonClick(BoardController.java:134)] - Nie mo?na wczyta? planszy z pliku.
