@@ -101,7 +101,7 @@ public class BoardController {
     private void loadBoard() throws NoMethodException {
         try {
             SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
-            Dao<SudokuBoard> dao = factory.getFileDao("bs.txt");
+            Dao<SudokuBoard> dao = factory.getFileDao("MySudoku.txt");
             board = dao.read();
             populateGrid();
         } catch (DaoExceptions e) {
@@ -143,14 +143,28 @@ public class BoardController {
         }
     }
 
+    public void switchToMainMenu() throws InputException {
+        try {
+            FXMLLoader fxmlLoader =
+                    new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+            fxmlLoader.setResources(HelloController.activeBundle);
+            Scene scene = new Scene(fxmlLoader.load(), 500, 500);
+            Stage stage = (Stage) backButton.getScene().getWindow();
+            stage.setTitle("Sudoku!");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            InputException ex = new InputException(InputException.MEN_FAIL, e);
+            ex.setBundle();
+            throw ex;
+        }
+    }
+
     public void onMenuButtonClick() throws IOException {
-        FXMLLoader fxmlLoader =
-                new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        fxmlLoader.setResources(HelloController.activeBundle);
-        Scene scene = new Scene(fxmlLoader.load(), 500, 500);
-        Stage stage = (Stage) backButton.getScene().getWindow();
-        stage.setTitle("Sudoku!");
-        stage.setScene(scene);
-        stage.show();
+        try {
+            switchToMainMenu();
+        } catch (InputException e) {
+            logger.error(e.getLocalizedMessage());
+        }
     }
 }
