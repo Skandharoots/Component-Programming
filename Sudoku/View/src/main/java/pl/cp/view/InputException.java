@@ -18,6 +18,8 @@ public class InputException extends IOException {
 
     public static String MEN_FAIL = "input.menuswitch";
 
+    public static String BOR_FAIL = "input.boardswitch";
+
 
     public static void setBundle() {
         messages = ResourceBundle.getBundle("pl.cp.exceptions.Input", HelloController.activeLocale);

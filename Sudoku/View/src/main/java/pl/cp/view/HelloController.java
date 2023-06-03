@@ -55,7 +55,7 @@ public class HelloController {
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
-            InputException ex = new InputException(InputException.INPUT_FAIL, e);
+            InputException ex = new InputException(InputException.BOR_FAIL, e);
             ex.setBundle();
             throw ex;
         }
@@ -95,16 +95,7 @@ public class HelloController {
     public void switchToEnglish() throws InputException {
         try {
             activeLocale = new Locale.Builder().setRegion("Us").setLanguage("en").build();
-            activeBundle = ResourceBundle.getBundle("pl.cp.i18n.App", activeLocale);
-            authorsBundle = ResourceBundle.getBundle("pl.cp.view.Authors", activeLocale);
-            FXMLLoader fxmlLoader =
-                    new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-            fxmlLoader.setResources(activeBundle);
-            Scene scene = new Scene(fxmlLoader.load(), 500, 500);
-            Stage stage = (Stage) easy.getScene().getWindow();
-            stage.setTitle("Sudoku!");
-            stage.setScene(scene);
-            stage.show();
+            generateBundle();
         } catch (IOException e) {
             InputException ex = new InputException(InputException.ENG_FAIL, e);
             ex.setBundle();
@@ -115,6 +106,16 @@ public class HelloController {
     public void switchToPolish() throws InputException {
         try {
             activeLocale = new Locale.Builder().setRegion("PL").setLanguage("pl").build();
+            generateBundle();
+        } catch (IOException e) {
+            InputException ex = new InputException(InputException.POL_FAIL, e);
+            ex.setBundle();
+            throw ex;
+        }
+    }
+
+    private void generateBundle() throws IOException {
+        try {
             activeBundle = ResourceBundle.getBundle("pl.cp.i18n.App", activeLocale);
             authorsBundle = ResourceBundle.getBundle("pl.cp.view.Authors", activeLocale);
             FXMLLoader fxmlLoader =
@@ -126,7 +127,7 @@ public class HelloController {
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
-            InputException ex = new InputException(InputException.POL_FAIL, e);
+            InputException ex = new InputException(InputException.INPUT_FAIL, e);
             ex.setBundle();
             throw ex;
         }
