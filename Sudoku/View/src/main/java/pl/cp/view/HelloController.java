@@ -2,6 +2,7 @@ package pl.cp.view;
 
 import java.io.IOException;
 import java.util.Locale;
+import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -96,7 +97,7 @@ public class HelloController {
         try {
             activeLocale = new Locale.Builder().setRegion("Us").setLanguage("en").build();
             generateBundle();
-        } catch (IOException e) {
+        } catch (IOException | MissingResourceException e) {
             InputException ex = new InputException(InputException.ENG_FAIL, e);
             ex.setBundle();
             throw ex;
@@ -107,14 +108,14 @@ public class HelloController {
         try {
             activeLocale = new Locale.Builder().setRegion("PL").setLanguage("pl").build();
             generateBundle();
-        } catch (IOException e) {
+        } catch (IOException | MissingResourceException e) {
             InputException ex = new InputException(InputException.POL_FAIL, e);
             ex.setBundle();
             throw ex;
         }
     }
 
-    private void generateBundle() throws IOException {
+    private void generateBundle() throws InputException {
         try {
             activeBundle = ResourceBundle.getBundle("pl.cp.i18n.App", activeLocale);
             authorsBundle = ResourceBundle.getBundle("pl.cp.view.Authors", activeLocale);
@@ -126,7 +127,7 @@ public class HelloController {
             stage.setTitle("Sudoku!");
             stage.setScene(scene);
             stage.show();
-        } catch (IOException e) {
+        } catch (IOException | MissingResourceException e) {
             InputException ex = new InputException(InputException.INPUT_FAIL, e);
             ex.setBundle();
             throw ex;
@@ -143,7 +144,7 @@ public class HelloController {
             stage.setTitle("Authors");
             stage.setScene(scene);
             stage.show();
-        } catch (IOException e) {
+        } catch (IOException | MissingResourceException e) {
             InputException ex = new InputException(InputException.AUTH_FAIL, e);
             ex.setBundle();
             throw ex;

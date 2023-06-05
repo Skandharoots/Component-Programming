@@ -1,6 +1,7 @@
 package pl.cp.view;
 
 import java.io.IOException;
+import java.util.MissingResourceException;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.adapter.JavaBeanIntegerProperty;
 import javafx.beans.property.adapter.JavaBeanIntegerPropertyBuilder;
@@ -153,7 +154,7 @@ public class BoardController {
             stage.setTitle("Sudoku!");
             stage.setScene(scene);
             stage.show();
-        } catch (IOException e) {
+        } catch (IOException | MissingResourceException e) {
             InputException ex = new InputException(InputException.MEN_FAIL, e);
             ex.setBundle();
             throw ex;
