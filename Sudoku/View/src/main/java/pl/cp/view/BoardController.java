@@ -1,6 +1,11 @@
 package pl.cp.view;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.MissingResourceException;
 import java.util.Optional;
 import javafx.beans.binding.Bindings;
@@ -11,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.GridPane;
@@ -41,6 +47,12 @@ public class BoardController {
     private SudokuBoard board;
 
     private static Logger logger = LoggerFactory.getLogger(BoardController.class.getName());
+
+    private final String url = "jdbc:postgresql://localhost:5432/postgres";
+
+    private final String user = "postgres";
+
+    private final String password = "lapunia";
 
     @FXML
     public void initialize() {
@@ -153,12 +165,37 @@ public class BoardController {
             }
     }
 
+    public List<String> loadBoards() {
+        String query = "SELECT * FROM boards";
+        try (Connection con = DriverManager.getConnection(url, user, password)) {
+            ResultSet set = con.createStatement().executeQuery(query);
+            List<String> result = new ArrayList<>();
+            con.setAutoCommit(false);
+            while (set.next()) {
+                result.add(set.getString("name").toString());
+            }
+
+            con.commit();
+            return result;
+        } catch (Exception e) {
+            throw new LoadException(LoadException.LOADERDB_FAIL, e);
+        }
+    }
+
     public void onLoadDatabaseButtonClick() {
-        String name = "MySudok";
-        try {
-            loadDbBoard(name);
-        } catch (LoadException | NoMethodException e) {
-            logger.error(e.getLocalizedMessage());
+        List<String> choices;
+        choices = loadBoards();
+        ChoiceDialog<String> dialog = new ChoiceDialog<>("Boards", choices);
+        dialog.setTitle("Choose board");
+        dialog.setHeaderText("Select board to load.");
+        dialog.setContentText("Choose board: ");
+        Optional<String> name = dialog.showAndWait();
+        if (name.isPresent()) {
+            try {
+                loadDbBoard(name.get());
+            } catch (LoadException | NoMethodException e) {
+                logger.error(e.getLocalizedMessage());
+            }
         }
     }
 
