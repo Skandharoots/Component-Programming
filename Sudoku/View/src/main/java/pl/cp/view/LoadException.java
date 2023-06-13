@@ -12,6 +12,10 @@ public class LoadException extends DaoExceptions {
 
     public static String READER_FAIL = "reader.fail";
 
+    public static String LOADERDB_FAIL = "loaderdb.fail";
+
+    public static String READERDB_FAIL = "readerdb.fail";
+
     public static void setBundle() {
         messages = ResourceBundle.getBundle("pl.cp.exceptions.Load", HelloController.activeLocale);
     }

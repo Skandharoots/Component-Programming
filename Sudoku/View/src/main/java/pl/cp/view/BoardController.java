@@ -2,6 +2,7 @@ package pl.cp.view;
 
 import java.io.IOException;
 import java.util.MissingResourceException;
+import java.util.Optional;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.adapter.JavaBeanIntegerProperty;
 import javafx.beans.property.adapter.JavaBeanIntegerPropertyBuilder;
@@ -11,6 +12,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
@@ -113,6 +115,65 @@ public class BoardController {
             NoMethodException ex = new NoMethodException(NoMethodException.METHOD_NULL);
             ex.setBundle();
             throw ex;
+        }
+    }
+
+    private void loadDbBoard(String name) throws NoMethodException {
+        SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
+        try (Dao<SudokuBoard> dao = factory.getDatabaseDao(name)) {
+            board = dao.read();
+            populateGrid();
+        } catch (DaoExceptions e) {
+            LoadException ex = new LoadException(LoadException.LOADERDB_FAIL, e);
+            ex.setBundle();
+            throw ex;
+        } catch (NoSuchMethodException e) {
+            NoMethodException ex = new NoMethodException(NoMethodException.METHOD_NULL);
+            ex.setBundle();
+            throw ex;
+        } catch (Exception e) {
+            LoadException ex = new LoadException(LoadException.LOADERDB_FAIL, e);
+            ex.setBundle();
+            throw ex;
+        }
+    }
+
+    private void saveDbBoard(String name) {
+            SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
+            try (Dao<SudokuBoard> dao = factory.getDatabaseDao(name)) {
+            dao.write(board);
+        } catch (DaoExceptions e) {
+                LoadException ex = new LoadException(LoadException.READERDB_FAIL, e);
+                ex.setBundle();
+                throw ex;
+        } catch (Exception e) {
+                LoadException ex = new LoadException(LoadException.READERDB_FAIL, e);
+                ex.setBundle();
+                throw ex;
+            }
+    }
+
+    public void onLoadDatabaseButtonClick() {
+        String name = "MySudok";
+        try {
+            loadDbBoard(name);
+        } catch (LoadException | NoMethodException e) {
+            logger.error(e.getLocalizedMessage());
+        }
+    }
+
+    public void onSaveDatabaseButtonClick() {
+        TextInputDialog dialog = new TextInputDialog("Save board");
+        dialog.setTitle("Save board");
+        dialog.setHeaderText("Please insert name of the board to be saved");
+        dialog.setContentText("Enter board name: ");
+        Optional<String> name = dialog.showAndWait();
+        if (name.isPresent()) {
+            try {
+                saveDbBoard(name.get());
+            } catch (LoadException e) {
+                logger.error(e.getLocalizedMessage());
+            }
         }
     }
 

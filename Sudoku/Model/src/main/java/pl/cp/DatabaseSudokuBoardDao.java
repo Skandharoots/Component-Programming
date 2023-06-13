@@ -10,8 +10,6 @@ public class DatabaseSudokuBoardDao implements Dao<SudokuBoard> {
 
     private String boardName;
 
-    private int boardId;
-
     private final String url = "jdbc:postgresql://localhost:5432/postgres";
 
     private final String user = "postgres";
@@ -28,10 +26,11 @@ public class DatabaseSudokuBoardDao implements Dao<SudokuBoard> {
 
     @Override
     public SudokuBoard read() {
-        String querry = "SELECT * FROM fields LEFT JOIN boards b on b.id = fields.board_id WHERE name = '"
-                + this.boardName + "'";
+        String querry = "SELECT * FROM fields LEFT JOIN boards b on b.id = fields.board_id "
+                + "WHERE name = '" + this.boardName + "'";
         try (Connection con = connect();
-            ResultSet set = con.createStatement().executeQuery(querry)){
+            ResultSet set = con.createStatement().executeQuery(querry)) {
+            con.setAutoCommit(false);
             SudokuBoard board = new SudokuBoard(new BacktrackingSudokuSolver());
             System.out.println(set);
             set.next();
@@ -41,6 +40,7 @@ public class DatabaseSudokuBoardDao implements Dao<SudokuBoard> {
                     set.next();
                 }
             }
+            con.commit();
             return board;
         } catch (SQLException e) {
             throw new DaoExceptions("Reading from database failed");
@@ -53,6 +53,7 @@ public class DatabaseSudokuBoardDao implements Dao<SudokuBoard> {
         String querry2 = "INSERT INTO boards (id, name)"
                 + " VALUES (DEFAULT, '" + this.boardName + "') RETURNING id;";
         try (Connection con = connect(); PreparedStatement pstmt = con.prepareStatement(querry1)) {
+            con.setAutoCommit(false);
             ResultSet idb = con.createStatement().executeQuery(querry2);
             idb.next();
             for (int i = 0; i < 9; i++) {
@@ -63,6 +64,7 @@ public class DatabaseSudokuBoardDao implements Dao<SudokuBoard> {
                     pstmt.executeUpdate();
                 }
             }
+            con.commit();
         } catch (SQLException e) {
             throw new DaoExceptions("Writing to database failed");
         }

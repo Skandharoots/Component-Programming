@@ -79,9 +79,12 @@ public class SudokuBoardDaoTest {
     public void readDatabaseTest() {
         SudokuBoard board2 = new SudokuBoard(new BacktrackingSudokuSolver());
         SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
-        Dao<SudokuBoard> dao2 = factory.getDatabaseDao("TestSudok");
+        try (Dao<SudokuBoard> dao2 = factory.getDatabaseDao("TestSudok")) {
             board2 = dao2.read();
             System.out.println(board2);
+        } catch (Exception e) {
+            System.out.println("Error reading from database");
+        }
 
     }
 

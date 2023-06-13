@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.cp.view.BoardController">
+<AnchorPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.cp.view.BoardController">
    <children>
       <GridPane fx:id="myGrid" alignment="CENTER" hgap="5.0" layoutX="50.0" layoutY="72.0" prefHeight="400.0" prefWidth="400.0" vgap="5.0" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="72.0">
         <columnConstraints>
@@ -36,8 +36,10 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </GridPane>
-      <Button fx:id="backButton" layoutX="50.0" layoutY="35.0" mnemonicParsing="false" onAction="#onMenuButtonClick" prefHeight="22.0" prefWidth="68.0" text="%menuButton.text" />
-      <Button fx:id="loadbtn" layoutX="216.0" layoutY="35.0" mnemonicParsing="false" onAction="#onLoadButtonClick" prefHeight="22.0" prefWidth="68.0" text="%loadButton.text" />
-      <Button fx:id="savebtn" layoutX="382.0" layoutY="35.0" mnemonicParsing="false" onAction="#onSaveButtonClick" prefHeight="22.0" prefWidth="68.0" text="%saveButton.text" />
+      <Button fx:id="backButton" layoutX="45.0" layoutY="35.0" mnemonicParsing="false" onAction="#onMenuButtonClick" prefHeight="22.0" prefWidth="68.0" text="%menuButton.text" />
+      <Button fx:id="loadbtn" layoutX="125.0" layoutY="35.0" mnemonicParsing="false" onAction="#onLoadButtonClick" prefHeight="22.0" prefWidth="68.0" text="%loadButton.text" />
+      <Button fx:id="savebtn" layoutX="205.0" layoutY="35.0" mnemonicParsing="false" onAction="#onSaveButtonClick" prefHeight="22.0" prefWidth="68.0" text="%saveButton.text" />
+      <Button fx:id="loadDatabaseButton" layoutX="375.0" layoutY="35.0" mnemonicParsing="false" onAction="#onLoadDatabaseButtonClick" prefHeight="22.0" prefWidth="80.0" text="%loadDbButton.text" />
+      <Button fx:id="saveDatabaseButton" layoutX="285.0" layoutY="35.0" mnemonicParsing="false" onAction="#onSaveDatabaseButtonClick" prefHeight="22.0" prefWidth="80.0" text="%saveDbButton.text" />
    </children>
 </AnchorPane>
