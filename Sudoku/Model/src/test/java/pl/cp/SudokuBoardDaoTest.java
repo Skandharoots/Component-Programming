@@ -71,7 +71,7 @@ public class SudokuBoardDaoTest {
         try (Dao<SudokuBoard> dao = factory.getDatabaseDao("TestSudok")) {
             dao.write(board);
         } catch (Exception e) {
-            System.out.println(e.getLocalizedMessage());
+            assertFalse(e.getMessage().contentEquals("Writing to database failed"));
         }
     }
 
