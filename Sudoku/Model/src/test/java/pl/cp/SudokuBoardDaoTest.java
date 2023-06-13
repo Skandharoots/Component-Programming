@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.ThrowingSupplier;
 
 import java.io.FileReader;
+import java.sql.Connection;
 import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -61,4 +62,27 @@ public class SudokuBoardDaoTest {
         Dao<SudokuBoard> dao1 = factory1.getFileDao("Wrong.txt");
         assertDoesNotThrow(dao1::close);
     }
+
+    @Test
+    public void writeReadDbTest() {
+        SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
+        SudokuBoard board = new SudokuBoard(new BacktrackingSudokuSolver());
+        board.solveGame();
+        try (Dao<SudokuBoard> dao = factory.getDatabaseDao("TestSudok")) {
+            dao.write(board);
+        } catch (Exception e) {
+            System.out.println(e.getLocalizedMessage());
+        }
+    }
+
+    @Test
+    public void readDatabaseTest() {
+        SudokuBoard board2 = new SudokuBoard(new BacktrackingSudokuSolver());
+        SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
+        Dao<SudokuBoard> dao2 = factory.getDatabaseDao("TestSudok");
+            board2 = dao2.read();
+            System.out.println(board2);
+
+    }
+
 }
