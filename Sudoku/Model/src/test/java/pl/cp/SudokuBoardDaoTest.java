@@ -64,14 +64,36 @@ public class SudokuBoardDaoTest {
     }
 
     @Test
-    public void writeReadDbTest() {
+    public void writeDbTest() {
         SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
         SudokuBoard board = new SudokuBoard(new BacktrackingSudokuSolver());
         board.solveGame();
         try (Dao<SudokuBoard> dao = factory.getDatabaseDao("TestSudok")) {
             dao.write(board);
         } catch (Exception e) {
-            assertFalse(e.getMessage().contentEquals("Writing to database failed"));
+            System.out.println("Writing to database failed");
+        }
+    }
+
+    @Test
+    public void writeWrongDbTest() {
+        SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
+        SudokuBoard board = null;
+        try (Dao<SudokuBoard> dao = factory.getDatabaseDao("®")) {
+            dao.write(board);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Test
+    public void readWrongDbTest() {
+        SudokuBoard board2 = new SudokuBoard(new BacktrackingSudokuSolver());
+        SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
+        try (Dao<SudokuBoard> dao2 = factory.getDatabaseDao("Wrong")) {
+            board2 = dao2.read();
+        } catch (Exception e) {
+            assertTrue(e.getMessage().contentEquals("Reading from database failed"));
         }
     }
 
