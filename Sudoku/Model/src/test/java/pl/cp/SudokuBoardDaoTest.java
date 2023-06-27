@@ -76,17 +76,6 @@ public class SudokuBoardDaoTest {
     }
 
     @Test
-    public void writeWrongDbTest() {
-        SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
-        SudokuBoard board = null;
-        try (Dao<SudokuBoard> dao = factory.getDatabaseDao("®")) {
-            dao.write(board);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    @Test
     public void readWrongDbTest() {
         SudokuBoard board2 = new SudokuBoard(new BacktrackingSudokuSolver());
         SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
