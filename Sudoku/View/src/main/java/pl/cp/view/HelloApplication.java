@@ -18,7 +18,7 @@ public class HelloApplication extends Application {
             HelloController.activeBundle =
                     ResourceBundle.getBundle("pl.cp.i18n.App", HelloController.activeLocale);
             HelloController.authorsBundle =
-                    ResourceBundle.getBundle("pl.cp.i18n.Authors", HelloController.activeLocale);
+                    ResourceBundle.getBundle("pl.cp.view.Authors", HelloController.activeLocale);
             FXMLLoader fxmlLoader =
                     new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
             fxmlLoader.setResources(HelloController.activeBundle);
